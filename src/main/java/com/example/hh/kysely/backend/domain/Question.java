@@ -1,7 +1,15 @@
 package com.example.hh.kysely.backend.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Question {
-	private Long questionId;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private Long id;
 	private String content;
 	private String answer;
 	
@@ -17,11 +25,11 @@ public class Question {
 	}
 
 	public Long getQuestionId() {
-		return questionId;
+		return id;
 	}
 
 	public void setQuestionId(Long questionId) {
-		this.questionId = questionId;
+		this.id = questionId;
 	}
 
 	public String getContent() {
@@ -42,7 +50,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", content=" + content + ", answer=" + answer + "]";
+		return "Question [questionId=" + id + ", content=" + content + ", answer=" + answer + "]";
 	}
 	
 }

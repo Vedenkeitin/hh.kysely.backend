@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class QuestionController {
-	@RequestMapping("/")
+	@RequestMapping(value="/")
 	public String greeting() {
 		return "hello";
 	}

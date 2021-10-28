@@ -20,7 +20,6 @@ public class Application {
 	}
 	
 	@Bean
-	
 	public CommandLineRunner insertDemoQuestions(QuestionRepository Qrepository) {
 		return (args) -> {
 			Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc"));
