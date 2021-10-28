@@ -45,6 +45,10 @@ public class Question {
 		return "Question [questionId=" + questionId + ", content=" + content + ", answer=" + answer + "]";
 	}
 	
+<<<<<<< HEAD
 }
 	
 	
+=======
+}
+>>>>>>> a03305aacd491e67afc9fd8238373742f3a9b987
