@@ -1,37 +1,48 @@
 package com.example.hh.kysely.backend.domain;
 
 public class Question {
-	private Long QuestionId;
-	private String Answer;
+	private Long questionId;
+	private String content;
+	private String answer;
 	
+	
+
 	public Question() {
 		
 	}
-
-	public Question(String answer) {
-		Answer = answer;
+	
+	public Question(String content, String answer) {
+		this.content = content;
+		this.answer = answer;
 	}
 
 	public Long getQuestionId() {
-		return QuestionId;
+		return questionId;
 	}
 
 	public void setQuestionId(Long questionId) {
-		QuestionId = questionId;
+		this.questionId = questionId;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	public String getAnswer() {
-		return Answer;
+		return answer;
 	}
 
 	public void setAnswer(String answer) {
-		Answer = answer;
+		this.answer = answer;
 	}
 
 	@Override
 	public String toString() {
-		return "Question [QuestionId=" + QuestionId + ", Answer=" + Answer + "]";
+		return "Question [questionId=" + questionId + ", content=" + content + ", answer=" + answer + "]";
 	}
 	
 	
-}
