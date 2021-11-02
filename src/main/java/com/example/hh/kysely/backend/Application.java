@@ -28,12 +28,16 @@ public class Application {
 	@Bean
 	public CommandLineRunner insertDemoQuestions(QuestionRepository Qrepository, QuizRepository QuizRepo) {
 		return (args) -> {
+		
+			Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc"));
+			Qrepository.save(new Question("What is your favourite song?", "Allstar"));
 			
-			QuizRepo.save(new Quiz("quiz1"));
-			Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc", QuizRepo.findByName("quiz1").get(0)));
-			Qrepository.save(new Question("What is your favourite song?", "Allstar", QuizRepo.findByName("quiz1").get(0)));
+			List<Question> qq = new ArrayList<Question>();			
+			qq.add(Qrepository.findByContent("What is your favourite song?").get(0));
 			
-			
+			Quiz quiz1 = new Quiz("Quiz1");
+			quiz1.setQuestions(qq);
+			QuizRepo.save(quiz1);
 			
 			log.info("Fetching demo questions...");
 			

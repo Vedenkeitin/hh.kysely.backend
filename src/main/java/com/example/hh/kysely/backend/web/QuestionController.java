@@ -78,7 +78,7 @@ public class QuestionController {
 	public String quizPage(@PathVariable("id") Long quizId, Model model) {
 		
 		model.addAttribute("quiz", quizrepo.findById(quizId));
-		
+		System.out.println(quizrepo.findById(quizId));
 	return "quizpage";
 	}
 	@RequestMapping(value="/question")
