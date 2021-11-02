@@ -16,7 +16,7 @@ import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
 
 
-
+@CrossOrigin
 @Controller
 public class QuestionController {
 	@RequestMapping(value="/")
