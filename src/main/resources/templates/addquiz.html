@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create a questionnaire</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Create a questionnaire</h1>
+	<div>
+	
+	<table>
+	<tr th:each="question : ${questions}">
+		<td th:text="${question.content}">Content</td>
+	</tr>
+	</table>
+	
+		<form th:object="${question}" th:action="@{save}" action="#" method="post">
+		  	<label for="question">Question</label>
+			<input type="text" id="question" th:field="*{content}" />
+			<div style="clear: both; display: block; height: 15px;"></div>
+		  	
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>
