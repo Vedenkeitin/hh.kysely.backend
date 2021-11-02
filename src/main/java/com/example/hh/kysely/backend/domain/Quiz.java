@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -26,9 +27,9 @@ public class Quiz {
 	private String name;
 	
 	 @OneToMany
-	 @JoinColumn(name = "quizasd")
+	 @JoinColumn(name = "quiz")
 	 @JsonManagedReference
-	private List<Question> questions;
+	public List<Question> questions;
 
 	public Quiz() {}
 	

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
+import com.example.hh.kysely.backend.domain.Quiz;
+import com.example.hh.kysely.backend.domain.QuizRepository;
 
 
 
@@ -27,6 +29,9 @@ public class QuestionController {
 	@Autowired
 	private QuestionRepository qrepo;
 	
+	@Autowired
+	private QuizRepository quizrepo;
+	
 	// Hakee tietokannasta kysymykset
 	@RequestMapping(value="/questions")
 	public String QuestionList (Model model) {
@@ -34,7 +39,7 @@ public class QuestionController {
 		return "questions";
 	}
 	
-	// REST kysymysten haku
+	// REST kyselyiden haku
 	@RequestMapping(value="/questionsRest", method = RequestMethod.GET)
 	public @ResponseBody List<Question> questionListRest() {
 		return (List<Question>) qrepo.findAll();
