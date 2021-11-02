@@ -1,6 +1,21 @@
 package com.example.hh.kysely.backend.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,17 +28,24 @@ public class Question {
 	private String content;
 	private String answer;
 	
+	@ManyToOne
+	@JoinColumn(name = "question")
+	@JsonManagedReference
+	private Quiz quiz;
 	
-
-	public Question() {
-		
-	}
+	public Question() {}
 	
 	public Question(String content, String answer) {
 		this.content = content;
 		this.answer = answer;
 	}
 
+	public Question(String content, String answer, Quiz quiz) {
+		this.content = content;
+		this.answer = answer;
+		this.quiz = quiz;
+	}
+	
 	public Long getQuestionId() {
 		return id;
 	}
@@ -48,6 +70,15 @@ public class Question {
 		this.answer = answer;
 	}
 
+
+	public Quiz getQuiz() {
+		return quiz;
+	}
+
+	public void setQuiz(Quiz quiz) {
+		this.quiz = quiz;
+	}
+	
 	@Override
 	public String toString() {
 		return "Question [questionId=" + id + ", content=" + content + ", answer=" + answer + "]";
