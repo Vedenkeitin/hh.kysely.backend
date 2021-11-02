@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
-<<<<<<< HEAD
 import com.example.hh.kysely.backend.domain.Quiz;
-=======
->>>>>>> 40743b7676e26b88bed2f234694a53c1a48b2b6c
 import com.example.hh.kysely.backend.domain.QuizRepository;
 
 
