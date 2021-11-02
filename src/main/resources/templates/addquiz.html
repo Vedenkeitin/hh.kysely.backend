@@ -14,7 +14,7 @@
 	</tr>
 	</table>
 	
-		<form th:object="${question}" th:action="@{save}" action="#" method="post">
+		<form th:object="${question}" th:action="@{save}" action="#" method="get">
 		  	<label for="question">Question</label>
 			<input type="text" id="question" th:field="*{content}" />
 			<div style="clear: both; display: block; height: 15px;"></div>

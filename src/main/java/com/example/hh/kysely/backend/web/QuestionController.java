@@ -53,7 +53,7 @@ public class QuestionController {
 		model.addAttribute("question", question);
 		return "addquiz";
 	}
-	@RequestMapping(value= "/kaverinlahetys", method = RequestMethod.GET)
+	@RequestMapping(value= "/save", method = RequestMethod.GET)
 	public String kasittelePostaus(@ModelAttribute(name="question") Question question, Model model) {
 		System.out.println("OLLAAN KÄSITTELE POSTAUKSESSA");
 		questions.add(question);
