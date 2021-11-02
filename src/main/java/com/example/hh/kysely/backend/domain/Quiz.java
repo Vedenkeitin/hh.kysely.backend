@@ -26,7 +26,7 @@ public class Quiz {
 	private String name;
 	
 	 @OneToMany
-	 @JoinColumn(name = "quizasd")
+	 @JoinColumn(name = "quiz")
 	 @JsonManagedReference
 	private List<Question> questions;
 

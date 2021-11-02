@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Quiz</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+	<div class="p-2">
+		<h1 class="d-inline">Create Quiz</h1>
+		
+	</div>
+	<div >
+		<h2 th:text=${quiz.name}></h2>
+		<!--  
+		<div >
+			<div class="row">
+				<div class="col-lg-5 col-sm-12 col-md-12 col-12 pb-4">
+					<div th:object="${question}">
+						<h3 style="display: inline-block;">Questions</h3>
+						<form th:action="${'/event/' + event.get().id + '/addmember'}" action="#" method="post" sec:authorize="isAuthenticated()" style="display: inline-block;">
+							<input type="submit" class="btn btn-sm btn-info" value="add question" ></input>
+							<input type="text" th:field="*{content}" required />
+						</form>
+					</div>
+					<table class="table">
+						<tbody>
+						
+							<tr th:each="question : *{#lists.toList(get().questions)}">
+								<td th:text="${question.content}"></td>
+							</tr>
+							 
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+		 </div>
+		 -->
+	</div>
+	
+</div>
+
+</body>
+</html>
