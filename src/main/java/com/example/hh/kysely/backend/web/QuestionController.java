@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
+
 
 
 @Controller
@@ -38,6 +40,33 @@ public class QuestionController {
 		return (List<Question>) qrepo.findAll();
 	}
 	
+	private List<Question> questions = new ArrayList<Question>();
+
+
+	//TEHDÄÄN ENSIN ENDPOINT LANDING PAGELLE KUN SIVUSTOLLE
+	//TULLAAN EKAN KERRAN
+	@RequestMapping(value = "/questionlist", method = RequestMethod.GET)
+	public String naytaAloitus(@RequestParam(name="question", required=false) String content, Model model) {
+		System.out.println("TULTIIN KONTROLLERIIN");
+		questions = new ArrayList<Question>();
+		Question question = new Question();
+		model.addAttribute("question", question);
+		return "addquiz";
+	}
+	@RequestMapping(value= "/kaverinlahetys", method = RequestMethod.GET)
+	public String kasittelePostaus(@ModelAttribute(name="question") Question question, Model model) {
+		System.out.println("OLLAAN KÄSITTELE POSTAUKSESSA");
+		questions.add(question);
+		model.addAttribute("questions", questions);
+		System.out.println(question);
+		System.out.println("questions");
+		//HALUTAAN TYHJÄTÄ LOMAKE SEURAAVAA VARTEN
+		question = new Question();
+		model.addAttribute("question", question);
+		
+		return "addquiz";
+		
+	}
 	@RequestMapping(value="/question")
 	public String messages(Model model) {
 		Question q1 = new Question();
