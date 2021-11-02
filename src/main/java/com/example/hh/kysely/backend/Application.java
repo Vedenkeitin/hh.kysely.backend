@@ -30,8 +30,8 @@ public class Application {
 		return (args) -> {
 			
 			QuizRepo.save(new Quiz("quiz1"));
-			Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc", QuizRepo.findByName("quiz1").get(0)));
-			Qrepository.save(new Question("What is your favourite song?", "Allstar", QuizRepo.findByName("quiz1").get(0)));
+			Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc"));
+			Qrepository.save(new Question("What is your favourite song?", "Allstar"));
 			
 			
 			
