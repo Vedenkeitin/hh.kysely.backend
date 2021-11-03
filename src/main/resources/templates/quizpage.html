@@ -10,48 +10,40 @@
 <body>
 <div class="container">
 	<div class="p-2">
-		<h1 class="d-inline">Create Quiz</h1>
+		<h1 class="d-inline">Quiz</h1>
 		
 	</div>
 	<div th:object="${quiz}">
 		<h2 th:text=*{get().name}></h2>
 		<ul th:each="q : ${quiz.get().questions}">
-			<li th:text=${q.content}></li>
-		</ul>
-		<!--  
-		<div >
-			<div class="row">
-				<div class="col-lg-5 col-sm-12 col-md-12 col-12 pb-4">
-					<div th:object="${question}">
-						<h3 style="display: inline-block;">Questions</h3>
-						<form th:action="${'/event/' + event.get().id + '/addmember'}" action="#" method="post" sec:authorize="isAuthenticated()" style="display: inline-block;">
-							<input type="submit" class="btn btn-sm btn-info" value="add question" ></input>
-							<input type="text" th:field="*{content}" required />
-						</form>
-					</div>
-					<table class="table">
-						<tbody>
-						
-							<tr th:each="question : *{#lists.toList(get().questions)}">
-								<td th:text="${question.content}"></td>
-							</tr>
-							 
-						</tbody>
-					</table>
+			<li>
+				<p th:text=${q.content}></p>
+				<p th:text=${q.answer}></p> 
+			<!--  
+				<div th:object="*{q}">
+					<form th:action="${'/quiz/' + quiz.get().id + '/answerquestion/ + q.id'}" action="#" method="post">
+					  	<label for="question">Question</label>
+						<input type="text" id="question" th:field="*{content}" />
+						<input type="hidden" th:field="*{id}" />
+						<input type="submit" value="Answer"></input>
+					</form>
 				</div>
-				
-			</div>
-		 </div>
-		 -->
+			 -->
+			</li>
+		</ul>
+		
 	</div>
-	<form th:object="${question}" th:action="@{/save}" action="#" method="get">
+	
+
+	<div th:object="${question}">
+		<form th:action="${'/quiz/' + quiz.get().id + '/addquestion'}" action="#" method="post">
 		  	<label for="question">Question</label>
 			<input type="text" id="question" th:field="*{content}" />
 			<div style="clear: both; display: block; height: 15px;"></div>
 		  	
 			<input type="submit" value="Save"></input>
 		</form>
-	
+	</div>
 </div>
 
 </body>

@@ -3,6 +3,7 @@ package com.example.hh.kysely.backend.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,9 +27,7 @@ public class Quiz {
 	@Column(nullable = false)
 	private String name;
 	
-	 @OneToMany
-	 @JoinColumn(name = "quiz")
-	 @JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
 	public List<Question> questions;
 
 	public Quiz() {}

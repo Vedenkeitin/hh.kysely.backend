@@ -23,10 +23,6 @@ import com.example.hh.kysely.backend.domain.QuizRepository;
 @CrossOrigin
 @Controller
 public class QuestionController {
-	@RequestMapping(value="/")
-	public String greeting() {
-		return "hello";
-	}
 	
 	@Autowired
 	private QuestionRepository qrepo;
@@ -46,7 +42,6 @@ public class QuestionController {
 	public @ResponseBody List<Question> questionListRest() {
 		return (List<Question>) qrepo.findAll();
 	}
-	
 	private List<Question> questions = new ArrayList<Question>();
 
 
@@ -73,16 +68,32 @@ public class QuestionController {
 		
 		return "addquiz";
 	}
-	
+	// QUIZ PAGE
+	@RequestMapping(value="/")
+	public String index(Model model) {
+		model.addAttribute("quizzes", quizrepo.findAll());
+		model.addAttribute("quiz", new Quiz());
+		return "index";
+	}
 	@RequestMapping(value="/quiz/{id}")
 	public String quizPage(@PathVariable("id") Long quizId, Model model) {
-		
-		
 		model.addAttribute("quiz", quizrepo.findById(quizId));
 		model.addAttribute("question", new Question());
-		System.out.println(quizrepo.findById(quizId));
 	return "quizpage";
 	}
+	@RequestMapping(value="/quiz/save")
+	public String quizSave(Quiz quiz) {
+		quizrepo.save(quiz);
+		return "redirect:../";
+	}
+	@RequestMapping(value="/quiz/{id}/addquestion")
+	public String saveQuestionToQuiz(@PathVariable("id") Long quizId, Question question) {
+		qrepo.save(new Question(question.getContent(), quizrepo.findById(quizId).orElse(null)));
+		String returnUrl = "redirect:/quiz/" + quizId; 
+		return returnUrl;
+	}
+	
+	
 	@RequestMapping(value="/question")
 	public String messages(Model model) {
 		Question q1 = new Question();
