@@ -43,8 +43,8 @@ public class QuestionController {
 	
 	// REST kyselyiden haku
 	@RequestMapping(value="/questionsRest", method = RequestMethod.GET)
-	public @ResponseBody List<Question> questionListRest() {
-		return (List<Question>) qrepo.findAll();
+	public @ResponseBody List<Quiz> questionListRest() {
+		return (List<Quiz>) quizrepo.findAll();
 	}
 	
 	private List<Question> questions = new ArrayList<Question>();
@@ -78,7 +78,7 @@ public class QuestionController {
 	public String quizPage(@PathVariable("id") Long quizId, Model model) {
 		
 		model.addAttribute("quiz", quizrepo.findById(quizId));
-		
+		System.out.println(quizrepo.findById(quizId));
 	return "quizpage";
 	}
 	@RequestMapping(value="/question")
