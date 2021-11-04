@@ -3,6 +3,7 @@ package com.example.hh.kysely.backend.domain;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -25,10 +27,8 @@ public class Quiz {
 	@Column(nullable = false)
 	private String name;
 	
-	 @OneToMany
-	 @JoinColumn(name = "quizasd")
-	 @JsonManagedReference
-	private List<Question> questions;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
+	public List<Question> questions;
 
 	public Quiz() {}
 	

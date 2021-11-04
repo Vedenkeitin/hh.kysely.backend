@@ -13,6 +13,7 @@ import java.util.List;
 
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
+import com.example.hh.kysely.backend.domain.Quiz;
 import com.example.hh.kysely.backend.domain.QuizRepository;
 
 @SpringBootApplication
@@ -25,10 +26,13 @@ public class Application {
 	}
 	
 	@Bean
-	public CommandLineRunner insertDemoQuestions(QuestionRepository Qrepository, QuizRepository QuizRepo) {
+	public CommandLineRunner insertDemoQuestions(QuestionRepository Qrepository, QuizRepository quizrepo) {
 		return (args) -> {
-			Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc"));
-			Qrepository.save(new Question("What is your favourite song?", "Allstar"));
+			Quiz quiz1 = new Quiz("Quiz from clr");
+			quizrepo.save(quiz1);
+			
+			Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc", quiz1));
+			Qrepository.save(new Question("What is your favourite song?", "Allstar", quiz1));
 			
 			log.info("Fetching demo questions...");
 			

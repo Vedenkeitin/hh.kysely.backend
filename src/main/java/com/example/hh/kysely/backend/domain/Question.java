@@ -13,6 +13,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -38,6 +39,12 @@ public class Question {
 	public Question(String content, String answer) {
 		this.content = content;
 		this.answer = answer;
+	}
+	
+	public Question(String content, Quiz quiz) {
+		super();
+		this.content = content;
+		this.quiz = quiz;
 	}
 
 	public Question(String content, String answer, Quiz quiz) {
