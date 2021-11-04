@@ -51,10 +51,12 @@ public class Quiz {
 		this.name = name;
 	}
 
+	@JsonIgnore
 	public List<Question> getQuestions() {
 		return questions;
 	}
 
+	@JsonIgnore
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
