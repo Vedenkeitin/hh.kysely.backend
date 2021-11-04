@@ -1,6 +1,5 @@
 package com.example.hh.kysely.backend.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,34 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 public class Quiz {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "id", nullable = false, updatable = false)
 	private Long id;
 	@Column(nullable = false)
 	private String name;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
+	@JsonIgnoreProperties("quiz")
 	public List<Question> questions;
 
-	public Quiz() {}
-	
+	public Quiz() {
+	}
+
 	public Quiz(String name) {
 		super();
-		this.name = name;	
+		this.name = name;
 	}
-	
+
 	public Quiz(String name, List<Question> questions) {
 		super();
 		this.name = name;
@@ -51,12 +48,10 @@ public class Quiz {
 		this.name = name;
 	}
 
-	@JsonIgnore
 	public List<Question> getQuestions() {
 		return questions;
 	}
 
-	@JsonIgnore
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
@@ -68,6 +63,5 @@ public class Quiz {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
+
 }
