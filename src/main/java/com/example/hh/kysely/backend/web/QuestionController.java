@@ -42,6 +42,10 @@ public class QuestionController {
 	public @ResponseBody List<Question> questionListRest() {
 		return (List<Question>) qrepo.findAll();
 	}
+	@RequestMapping(value="/quizRest", method = RequestMethod.GET)
+	public @ResponseBody List<Quiz> quizListRest() {
+		return (List<Quiz>) quizrepo.findAll();
+	}
 	private List<Question> questions = new ArrayList<Question>();
 
 

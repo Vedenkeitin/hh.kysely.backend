@@ -15,8 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Quiz {
@@ -28,6 +31,7 @@ public class Quiz {
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
+	@JsonIgnoreProperties("quiz")
 	public List<Question> questions;
 
 	public Quiz() {}
@@ -51,12 +55,10 @@ public class Quiz {
 		this.name = name;
 	}
 
-	@JsonIgnore
 	public List<Question> getQuestions() {
 		return questions;
 	}
 
-	@JsonIgnore
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
