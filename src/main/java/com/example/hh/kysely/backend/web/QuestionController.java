@@ -18,6 +18,7 @@ import com.example.hh.kysely.backend.domain.QuestionRepository;
 import com.example.hh.kysely.backend.domain.Quiz;
 import com.example.hh.kysely.backend.domain.QuizRepository;
 
+// JAA USEAMPAAN CONTROLLERIIN
 @CrossOrigin
 @Controller
 public class QuestionController {
