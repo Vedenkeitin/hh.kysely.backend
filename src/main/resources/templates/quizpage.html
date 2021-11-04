@@ -19,16 +19,18 @@
 			<li>
 				<p th:text=${q.content}></p>
 				<p th:text=${q.answer}></p> 
-			<!--  
+				
+			<!-- KOMMENTTI
 				<div th:object="*{q}">
 					<form th:action="${'/quiz/' + quiz.get().id + '/answerquestion/ + q.id'}" action="#" method="post">
-					  	<label for="question">Question</label>
+					  	<label for="question">Add question</label>
 						<input type="text" id="question" th:field="*{content}" />
 						<input type="hidden" th:field="*{id}" />
 						<input type="submit" value="Answer"></input>
 					</form>
 				</div>
 			 -->
+			 
 			</li>
 		</ul>
 		
@@ -37,14 +39,14 @@
 
 	<div th:object="${question}">
 		<form th:action="${'/quiz/' + quiz.get().id + '/addquestion'}" action="#" method="post">
-		  	<label for="question">Question</label>
+		  	<label for="question">Add question</label>
 			<input type="text" id="question" th:field="*{content}" />
 			<div style="clear: both; display: block; height: 15px;"></div>
 		  	
 			<input type="submit" value="Save"></input>
 		</form>
 	</div>
+	
 </div>
-
 </body>
 </html>

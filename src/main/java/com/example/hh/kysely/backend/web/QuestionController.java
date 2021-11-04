@@ -30,7 +30,7 @@ public class QuestionController {
 	@Autowired
 	private QuizRepository quizrepo;
 	
-	// SEARCH FOR QUESTIONS
+	// FIN ALL QUESTIONS
 	@RequestMapping(value="/questions")
 	public String QuestionList (Model model) {
 		model.addAttribute("questions", qrepo.findAll());
@@ -43,17 +43,8 @@ public class QuestionController {
 		return (List<Quiz>) quizrepo.findAll();
 	}
 	private List<Question> questions = new ArrayList<Question>();
-
-
-	//TEHDÄÄN ENSIN ENDPOINT LANDING PAGELLE KUN SIVUSTOLLE
-	//TULLAAN EKAN KERRAN
-	@RequestMapping(value = "/questionlist", method = RequestMethod.GET)
-	public String naytaAloitus(@RequestParam(name="question", required=false) String content, Model model) {
-		questions = new ArrayList<Question>();
-		Question question = new Question();
-		model.addAttribute("question", question);
-		return "addquiz";
-	}
+	
+	// SAVING QUESTIONS
 	@RequestMapping(value= "/save", method = RequestMethod.GET)
 	public String kasittelePostaus(@ModelAttribute(name="question") Question question, Model model) {
 		questions.add(question);
