@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<head>
+<title>Quizzes</title>
+</head>
+<body>
+	
+	<div class="container">
+		<h1 th:text="'Quizzes'">Hello</h1>
+		<div >
+			<table class="table">
+				<tbody>
+					<tr>
+						<th scope="col">Name</th>
+						
+					</tr>
+					<tr th:each="quiz : ${quizzes}">
+						<td> <a th:href="${'/quiz/' + quiz.id}" th:text="${quiz.name}"></a></td>
+						<td th:text=${#lists.size(quiz.questions)}></td>				
+						
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div>
+			<form action="/quiz/save" th:object="${quiz}">
+				<input type="text" th:field="*{name}" required />
+				<input type="submit" class="btn btn-sm btn-primary" value="add quiz" ></input>
+			</form>
+		</div>
+	</div>
+	
+</body>
+</html>

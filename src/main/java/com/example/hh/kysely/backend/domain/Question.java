@@ -40,6 +40,12 @@ public class Question {
 		this.content = content;
 		this.answer = answer;
 	}
+	
+	public Question(String content, Quiz quiz) {
+		super();
+		this.content = content;
+		this.quiz = quiz;
+	}
 
 	public Question(String content, String answer, Quiz quiz) {
 		this.content = content;
