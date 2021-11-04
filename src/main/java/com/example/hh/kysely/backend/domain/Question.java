@@ -31,7 +31,6 @@ public class Question {
 	
 	@ManyToOne
 	@JoinColumn(name = "question")
-	@JsonManagedReference
 	private Quiz quiz;
 	
 	public Question() {}
