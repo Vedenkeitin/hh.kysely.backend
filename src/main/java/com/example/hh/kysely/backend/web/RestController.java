@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
@@ -23,8 +25,6 @@ public class RestController {
 
 	@Autowired
 	private QuizRepository quizrepo;
-	
-	
 
 	// REST, FIND QUESTIONS
 	@RequestMapping(value = "/questionsRest", method = RequestMethod.GET)
@@ -39,15 +39,16 @@ public class RestController {
 	}
 
 	// REST, SAVE ANSWER
-	/**
-	 * @RequestMapping(value = "/answerSave", method = RequestMethod.PUT) public
-	 *                       Question newAnswer(@RequestBody Question
-	 *                       newAnswer, @PathVariable Long id) { return
-	 *                       qrepo.findById(id) .map(question -> {
-	 *                       question.setAnswer(newAnswer.getAnswer()); return
-	 *                       qrepo.save(question); }) .orElseGet (() -> {
-	 *                       newAnswer.setQuestionId(id); return
-	 *                       qrepo.save(newAnswer); }); }
-	 */
+
+	@RequestMapping(value = "/answerSave/{id}", method = RequestMethod.PUT)
+	public Question newAnswer(@RequestBody Question newAnswer, @PathVariable Long id) {
+		return qrepo.findById(id).map(question -> {
+			question.setAnswer(newAnswer.getAnswer());
+			return qrepo.save(question);
+		}).orElseGet(() -> {
+			newAnswer.setQuestionId(id);
+			return qrepo.save(newAnswer);
+		});
+	}
 
 }
