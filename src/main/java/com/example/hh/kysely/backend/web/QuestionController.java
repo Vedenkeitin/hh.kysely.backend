@@ -30,33 +30,7 @@ public class QuestionController {
 	@Autowired
 	private QuizRepository quizrepo;
 
-	// REST, FIND QUESTIONS
-	@RequestMapping(value = "/questionsRest", method = RequestMethod.GET)
-	public @ResponseBody List<Question> questionListRest() {
-		return (List<Question>) qrepo.findAll();
-	}
-
-	// REST, FIND QUIZZES
-	@RequestMapping(value = "/quizRest", method = RequestMethod.GET)
-	public @ResponseBody List<Quiz> quizListRest() {
-		return (List<Quiz>) quizrepo.findAll();
-	}
 	
-	// REST, SAVE ANSWER
-	/**
-	@RequestMapping(value = "/answerSave", method = RequestMethod.PUT)
-	public Question newAnswer(@RequestBody Question newAnswer, @PathVariable Long id) {
-		return qrepo.findById(id)
-				.map(question -> {
-					question.setAnswer(newAnswer.getAnswer());
-					return qrepo.save(question);
-				})
-				.orElseGet (() -> {
-					newAnswer.setQuestionId(id);
-					return qrepo.save(newAnswer);
-				});
-	}
-	*/
 
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")
