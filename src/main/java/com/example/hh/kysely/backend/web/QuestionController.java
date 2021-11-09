@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -39,6 +40,22 @@ public class QuestionController {
 	public @ResponseBody List<Quiz> quizListRest() {
 		return (List<Quiz>) quizrepo.findAll();
 	}
+	
+	// REST, SAVE ANSWER
+	/**
+	@RequestMapping(value = "/answerSave", method = RequestMethod.PUT)
+	public Question newAnswer(@RequestBody Question newAnswer, @PathVariable Long id) {
+		return qrepo.findById(id)
+				.map(question -> {
+					question.setAnswer(newAnswer.getAnswer());
+					return qrepo.save(question);
+				})
+				.orElseGet (() -> {
+					newAnswer.setQuestionId(id);
+					return qrepo.save(newAnswer);
+				});
+	}
+	*/
 
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")
