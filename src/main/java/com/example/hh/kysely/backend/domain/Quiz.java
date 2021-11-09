@@ -22,6 +22,8 @@ public class Quiz {
 	private Long id;
 	@Column(nullable = false)
 	private String name;
+	private String Description;
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
 	@JsonIgnoreProperties("quiz")
@@ -74,5 +76,21 @@ public class Quiz {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public String getDescription() {
+		return Description;
+	}
 
+	public void setDescription(String description) {
+		Description = description;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	
 }
