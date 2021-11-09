@@ -8,7 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -21,10 +22,17 @@ public class Quiz {
 	private Long id;
 	@Column(nullable = false)
 	private String name;
+	private String Description;
+
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
 	@JsonIgnoreProperties("quiz")
 	public List<Question> questions;
+	
+	@ManyToOne
+	@JoinColumn(name="quiz")
+	@JsonIgnoreProperties("quizzes")
+	public User owner;
 
 	public Quiz() {
 	}
@@ -32,6 +40,11 @@ public class Quiz {
 	public Quiz(String name) {
 		super();
 		this.name = name;
+	}
+	
+	public Quiz(String name, User owner) {
+		this.name = name;
+		this.owner = owner;
 	}
 
 	public Quiz(String name, List<Question> questions) {
@@ -63,5 +76,21 @@ public class Quiz {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	public String getDescription() {
+		return Description;
+	}
 
+	public void setDescription(String description) {
+		Description = description;
+	}
+
+	public User getOwner() {
+		return owner;
+	}
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
+	
 }

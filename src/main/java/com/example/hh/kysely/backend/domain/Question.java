@@ -1,11 +1,15 @@
 package com.example.hh.kysely.backend.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -16,12 +20,17 @@ public class Question {
 	private Long id;
 	private String content;
 	private String answer;
+	private String type;
 
 	@ManyToOne
 	@JoinColumn(name = "question")
 	@JsonIgnoreProperties("questions")
 	private Quiz quiz;
-
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+    @JsonIgnoreProperties({"question"})
+    private List<Answer> answers;
+	
 	public Question() {
 	}
 
@@ -74,8 +83,28 @@ public class Question {
 		this.quiz = quiz;
 	}
 
-	@Override
-	public String toString() {
-		return "Question [questionId=" + id + ", content=" + content + ", answer=" + answer + "]";
+	public Long getId() {
+		return id;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
 }

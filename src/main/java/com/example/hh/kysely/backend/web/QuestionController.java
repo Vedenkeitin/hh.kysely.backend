@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -18,6 +19,7 @@ import com.example.hh.kysely.backend.domain.QuestionRepository;
 import com.example.hh.kysely.backend.domain.Quiz;
 import com.example.hh.kysely.backend.domain.QuizRepository;
 
+// JAA USEAMPAAN CONTROLLERIIN
 @CrossOrigin
 @Controller
 public class QuestionController {
@@ -28,17 +30,7 @@ public class QuestionController {
 	@Autowired
 	private QuizRepository quizrepo;
 
-	// REST, FIND QUESTIONS
-	@RequestMapping(value = "/questionsRest", method = RequestMethod.GET)
-	public @ResponseBody List<Question> questionListRest() {
-		return (List<Question>) qrepo.findAll();
-	}
-
-	// REST, FIND QUIZZES
-	@RequestMapping(value = "/quizRest", method = RequestMethod.GET)
-	public @ResponseBody List<Quiz> quizListRest() {
-		return (List<Quiz>) quizrepo.findAll();
-	}
+	
 
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")

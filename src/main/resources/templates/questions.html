@@ -15,6 +15,13 @@
 	
 	<tr th:each="question : ${questions}">
 		<td th:text="${question.content}">Content</td>
+		<form th:object="${question}" th:action="/answerSave" action="#" method="put">
+			<label for="answer">Answer</label>
+		  <input type="text" id="answer" th:field="*{answer}" />
+		  <div style="clear: both; display: block; height: 15px;"></div>
+			
+		  <input type="submit" value="submit"></input>
+	  </form>
 	</tr>
 	
 	</table>

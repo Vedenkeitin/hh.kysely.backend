@@ -18,7 +18,13 @@
 		<ul th:each="q : ${quiz.get().questions}">
 			<li>
 				<p th:text=${q.content}></p>
-				<p th:text=${q.answer}></p> 
+				<form th:object="${question}" action="#" method="put">
+					<label for="answer">Answer</label>
+				  <input type="text" id="answer" th:field="*{answer}" />
+				  <div style="clear: both; display: block; height: 15px;"></div>
+					
+				  <input type="submit" value="submit"></input>
+			  </form>
 				
 			<!-- KOMMENTTI
 				<div th:object="*{q}">
