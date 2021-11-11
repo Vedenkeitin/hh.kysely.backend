@@ -43,20 +43,6 @@ public class RestController {
 		return (List<Quiz>) quizrepo.findAll();
 	}
 
-	// REST, SAVE ANSWER
-
-	@RequestMapping(value = "/answerSave/{id}", method = RequestMethod.POST)
-	public Question newAnswer(@RequestBody Question newAnswer, @PathVariable Long id) {
-		return qrepo.findById(id).map(question -> {
-			question.setAnswer(newAnswer.getAnswer());
-			return qrepo.save(question);
-		}).orElseGet(() -> {
-			newAnswer.setQuestionId(id);
-			return qrepo.save(newAnswer);
-		});
-		
-	
-	}
 	
 	// REST, UUSI KYSYMYS
 	@RequestMapping(value="/questions/{id}/save", method= RequestMethod.POST)
