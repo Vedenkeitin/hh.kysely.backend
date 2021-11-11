@@ -48,8 +48,17 @@ public class Application {
 			Question question7 = Qrepository.save(new Question("Vapaa kommentti kurssista.", quiz1));
 
 			// SAVE ANSWERS
-			arepo.save(new Answer(question1, ""));
-			arepo.save(new Answer(question1, ""));
+			arepo.save(new Answer(question1, "Saavutin tavoitteet tietysti erinomaisesti"));
+			arepo.save(new Answer(question1, "En onnistunut :("));
+			arepo.save(new Answer(question2, "Kurssin työmäärä vastasu noppien määrää oikein mukavasti"));
+			arepo.save(new Answer(question2, "noppien määrää oikein mukavasti"));
+			arepo.save(new Answer(question2, "Kurssin työmäärä vastasi huonosti"));
+			arepo.save(new Answer(question3, "Olisin toivonut ryhmätöitä lisää"));
+			arepo.save(new Answer(question4, "Kurssissa oli hyvää ryhmätyöt"));
+			arepo.save(new Answer(question5, "Kurssia voisi kehittää vastaamalla tähän kyselyyn"));
+			arepo.save(new Answer(question6, "Antaisin arvosanaksi vaikka 2"));
+			arepo.save(new Answer(question7, "Tämä on vapaan kommentin paikanpitäjä"));
+			
 			
 			// CONSOLE INFORMATION
 			log.info("Fetching demo questions...");
