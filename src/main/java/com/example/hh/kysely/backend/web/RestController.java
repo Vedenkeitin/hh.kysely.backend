@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.example.hh.kysely.backend.domain.Answer;
+import com.example.hh.kysely.backend.domain.AnswerRepository;
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
 import com.example.hh.kysely.backend.domain.Quiz;
@@ -25,6 +27,9 @@ public class RestController {
 
 	@Autowired
 	private QuizRepository quizrepo;
+	
+	@Autowired
+	private AnswerRepository arepo;
 
 	// REST, FIND QUESTIONS
 	@RequestMapping(value = "/questionsRest", method = RequestMethod.GET)
@@ -53,6 +58,7 @@ public class RestController {
 	
 	}
 	
+	// REST, UUSI KYSYMYS
 	@RequestMapping(value="/questions/{id}/save", method= RequestMethod.POST)
 	public @ResponseBody Question saveQuestionRest(@RequestBody Question question, @PathVariable ("id") Long quizId) {
 		Quiz q = quizrepo.findById(quizId).orElse(null);
@@ -60,5 +66,15 @@ public class RestController {
 		return qrepo.save(question);
 		
 	}
+	
+	// REST, UUSI VASTAUS
+	@RequestMapping(value="/answers/{id}/save", method= RequestMethod.POST)
+	public @ResponseBody Answer saveAnswerRest(@RequestBody Answer answer, @PathVariable ("id") Long questionId) {
+		Question q = qrepo.findById(questionId).orElse(null);
+		answer.setQuestion(q);
+		return arepo.save(answer);
+		
+	}
+
 
 }
