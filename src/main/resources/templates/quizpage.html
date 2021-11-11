@@ -19,6 +19,7 @@
 	
 	<div th:object="${quiz}">
 		<h2 th:text=*{get().name}></h2>
+		<p th:text=*{get().description}></p>
 		<div>
 			<ol class="list-group">
 				<li class="list-group-item" th:each="q : ${quiz.get().questions}">

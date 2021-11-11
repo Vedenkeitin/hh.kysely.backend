@@ -35,7 +35,7 @@ public class Application {
 			User cliuser = urepo.save(new User("moi", "moi"));
 			
 			// CREATE NEW QUIZ
-			Quiz quiz1 = new Quiz("Esimerkkikysely: Kurssipalaute", cliuser);
+			Quiz quiz1 = new Quiz("Esimerkkikysely: Kurssipalaute", cliuser, "Kysely on tarkoitettu opiskelijoille, jolla on voi vastata opettajan luomaan kyselyyn. Kyselyyn voi vastata vain opiskelijat, jotka ovat osallistuneet kurssiin. ");
 			quizrepo.save(quiz1);
 
 			// SAVE QUESTIONS TO QUIZ
