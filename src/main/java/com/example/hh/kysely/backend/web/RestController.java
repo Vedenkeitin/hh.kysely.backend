@@ -1,5 +1,6 @@
 package com.example.hh.kysely.backend.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,32 @@ public class RestController {
 		return arepo.save(answer);
 		
 	}
+	
+	// REST, KATSO KYSELYN SISÄLTÖ
+	@RequestMapping(value = "/quizzes/{id}", method = RequestMethod.GET)
+	public @ResponseBody Quiz quizListRest(@PathVariable ("id") Long quizId) {
+		Quiz q = quizrepo.findById(quizId).orElse(null);
+		return q;
+		
+	}
+	// REST, HAE KYSELYN KYSYMYKSET
+	@RequestMapping(value = "/quizzes/{id}/questions", method = RequestMethod.GET)
+	public @ResponseBody List<Question> questionListRest(@PathVariable ("id") Long quizId) {
+		Quiz q = quizrepo.findById(quizId).orElse(null);
+		return q.questions;
+		
+	}
+	//REST, HAE KYSELYN KAIKKI VASTAUKSET
+	@RequestMapping(value = "/quizzes/{id}/answers", method = RequestMethod.GET)
+	public @ResponseBody List<Answer> answerListRest(@PathVariable ("id") Long quizId) {
+		Quiz q = quizrepo.findById(quizId).orElse(null);
+		List<Answer> alist = new ArrayList<>();
+		for (Question qu : q.questions) {
+			alist.addAll(qu.getAnswers());
+		}
+		return alist;
+	}
+	
 
 
 }
