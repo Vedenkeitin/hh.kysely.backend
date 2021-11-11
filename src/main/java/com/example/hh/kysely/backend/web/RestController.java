@@ -40,7 +40,7 @@ public class RestController {
 
 	// REST, SAVE ANSWER
 
-	@RequestMapping(value = "/answerSave/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/answerSave/{id}", method = RequestMethod.POST)
 	public Question newAnswer(@RequestBody Question newAnswer, @PathVariable Long id) {
 		return qrepo.findById(id).map(question -> {
 			question.setAnswer(newAnswer.getAnswer());
@@ -49,6 +49,16 @@ public class RestController {
 			newAnswer.setQuestionId(id);
 			return qrepo.save(newAnswer);
 		});
+		
+	
+	}
+	
+	@RequestMapping(value="/questions/{id}/save", method= RequestMethod.POST)
+	public @ResponseBody Question saveQuestionRest(@RequestBody Question question, @PathVariable ("id") Long quizId) {
+		Quiz q = quizrepo.findById(quizId).orElse(null);
+		question.setQuiz(q);
+		return qrepo.save(question);
+		
 	}
 
 }
