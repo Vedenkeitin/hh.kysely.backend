@@ -26,7 +26,7 @@ public class Quiz {
 
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
-	@JsonIgnoreProperties("quiz")
+	@JsonIgnoreProperties("quiz") //  ({ "quiz", "answers" }) vastaukset saa poistettua kyselyn vastauksista 
 	public List<Question> questions;
 	
 	@ManyToOne

@@ -21,7 +21,7 @@
 					<tr th:each="quiz : ${quizzes}">
 						<td> <a th:href="${'/quiz/' + quiz.id}" th:text="${quiz.name}"></a></td>
 						<td th:text=${#lists.size(quiz.questions)}></td>				
-						
+						<td><a th:href="@{/delete/{id}(id=${quiz.id})}" class="btn btn-danger">Delete</a></td>
 					</tr>
 				</tbody>
 			</table>
