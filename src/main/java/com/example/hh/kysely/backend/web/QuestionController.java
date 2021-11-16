@@ -62,4 +62,10 @@ public class QuestionController {
 		String returnUrl = "redirect:/quiz/" + quizId;
 		return returnUrl;
 	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deleteQuiz(@PathVariable("id") Long quizId, Model model) {
+	 quizrepo.deleteById(quizId);
+	 return "redirect:../index";
+	}
 }
