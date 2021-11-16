@@ -47,6 +47,12 @@ public class Quiz {
 		this.owner = owner;
 	}
 
+	public Quiz(String name, User owner, String description) {
+		this.name = name;
+		this.owner = owner;
+		this.Description = description;
+	}
+
 	public Quiz(String name, List<Question> questions) {
 		super();
 		this.name = name;

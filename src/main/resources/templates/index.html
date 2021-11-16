@@ -26,10 +26,20 @@
 				</tbody>
 			</table>
 		</div>
-		<div>
+		<div class="col-6">
 			<form action="/quiz/save" th:object="${quiz}">
-				<input type="text" th:field="*{name}" required />
-				<input type="submit" class="btn btn-sm btn-primary" value="add quiz" ></input>
+				
+				<div class="form-group">
+					<label>Quiz name</label>
+					<input class="form-control" type="text" th:field="*{name}" required />
+				</div>
+				<div class="form-group">
+					<label>description</label>
+					<textarea class="form-control" type="text" th:field=*{description} />
+				<div  class="form-group">
+					<input type="submit"  class="btn btn-sm btn-primary" value="add quiz" ></input>
+				</div>
+				</div>
 			</form>
 		</div>
 	</div>

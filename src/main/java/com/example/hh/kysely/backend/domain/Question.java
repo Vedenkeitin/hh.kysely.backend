@@ -51,14 +51,6 @@ public class Question {
 		this.quiz = quiz;
 	}
 
-	public Long getQuestionId() {
-		return id;
-	}
-
-	public void setQuestionId(Long questionId) {
-		this.id = questionId;
-	}
-
 	public String getContent() {
 		return content;
 	}

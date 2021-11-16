@@ -35,16 +35,30 @@ public class Application {
 			User cliuser = urepo.save(new User("moi", "moi"));
 			
 			// CREATE NEW QUIZ
-			Quiz quiz1 = new Quiz("Quiz from clr", cliuser);
+			Quiz quiz1 = new Quiz("Esimerkkikysely: Kurssipalaute", cliuser, "Kysely on tarkoitettu opiskelijoille, jolla on voi vastata opettajan luomaan kyselyyn. Kyselyyn voi vastata vain opiskelijat, jotka ovat osallistuneet kurssiin. ");
 			quizrepo.save(quiz1);
 
 			// SAVE QUESTIONS TO QUIZ
-			Question question1 = Qrepository.save(new Question("What's your favourite movie?", "Monsters Inc", quiz1));
-			Question question2 = Qrepository.save(new Question("What is your favourite song?", "Allstar", quiz1));
+			Question question1 = Qrepository.save(new Question("Kuinka hyvin saavutit kurssin oppimistavoitteet?", quiz1));
+			Question question2 = Qrepository.save(new Question("Kuinka hyvin kurssin työmäärä vastasi opintopisteiden määrää?", quiz1));
+			Question question3 = Qrepository.save(new Question("Mitä olisit toivonut lisää?", quiz1));
+			Question question4 = Qrepository.save(new Question("Mikä kurssissa oli hyvää?", quiz1));
+			Question question5 = Qrepository.save(new Question("Miten kurssia voisi kehittää?", quiz1));
+			Question question6 = Qrepository.save(new Question("Kokonaisarvosana kurssin järjestämisestä (1-5).", quiz1));
+			Question question7 = Qrepository.save(new Question("Vapaa kommentti kurssista.", quiz1));
 
 			// SAVE ANSWERS
-			arepo.save(new Answer(question1, "I'm thinking of ending things"));
-			arepo.save(new Answer(question1, "Samsara"));
+			arepo.save(new Answer(question1, "Saavutin tavoitteet tietysti erinomaisesti"));
+			arepo.save(new Answer(question1, "En onnistunut :("));
+			arepo.save(new Answer(question2, "Kurssin työmäärä vastasu noppien määrää oikein mukavasti"));
+			arepo.save(new Answer(question2, "noppien määrää oikein mukavasti"));
+			arepo.save(new Answer(question2, "Kurssin työmäärä vastasi huonosti"));
+			arepo.save(new Answer(question3, "Olisin toivonut ryhmätöitä lisää"));
+			arepo.save(new Answer(question4, "Kurssissa oli hyvää ryhmätyöt"));
+			arepo.save(new Answer(question5, "Kurssia voisi kehittää vastaamalla tähän kyselyyn"));
+			arepo.save(new Answer(question6, "Antaisin arvosanaksi vaikka 2"));
+			arepo.save(new Answer(question7, "Tämä on vapaan kommentin paikanpitäjä"));
+			
 			
 			// CONSOLE INFORMATION
 			log.info("Fetching demo questions...");
