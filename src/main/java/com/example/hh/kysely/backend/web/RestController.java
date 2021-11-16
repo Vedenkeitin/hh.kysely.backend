@@ -21,6 +21,7 @@ import com.example.hh.kysely.backend.domain.QuizRepository;
 
 @CrossOrigin
 @Controller
+@RequestMapping("/rest")
 public class RestController {
 
 	@Autowired
@@ -33,13 +34,13 @@ public class RestController {
 	private AnswerRepository arepo;
 
 	// REST, FIND QUESTIONS
-	@RequestMapping(value = "/questionsRest", method = RequestMethod.GET)
+	@RequestMapping(value = "/questions", method = RequestMethod.GET)
 	public @ResponseBody List<Question> questionListRest() {
 		return (List<Question>) qrepo.findAll();
 	}
 
 	// REST, FIND QUIZZES
-	@RequestMapping(value = "/quizRest", method = RequestMethod.GET)
+	@RequestMapping(value = "/quizzes", method = RequestMethod.GET)
 	public @ResponseBody List<Quiz> quizListRest() {
 		return (List<Quiz>) quizrepo.findAll();
 	}
