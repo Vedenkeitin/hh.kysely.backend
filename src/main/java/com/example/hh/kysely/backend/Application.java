@@ -13,6 +13,8 @@ import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
 import com.example.hh.kysely.backend.domain.Quiz;
 import com.example.hh.kysely.backend.domain.QuizRepository;
+import com.example.hh.kysely.backend.domain.Session;
+import com.example.hh.kysely.backend.domain.SessionRepository;
 import com.example.hh.kysely.backend.domain.User;
 import com.example.hh.kysely.backend.domain.UserRepository;
 
@@ -26,7 +28,7 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner insertDemoQuestions(QuestionRepository Qrepository, QuizRepository quizrepo, UserRepository urepo, AnswerRepository arepo) {
+	public CommandLineRunner insertDemoQuestions(QuestionRepository Qrepository, QuizRepository quizrepo, UserRepository urepo, AnswerRepository arepo, SessionRepository srepo) {
 		return (args) -> {
 
 			// COMMAND LINE RUNNER FOR CREATING TEST QUESTIONS, ANSWERS AND QUIZ
@@ -47,17 +49,23 @@ public class Application {
 			Question question6 = Qrepository.save(new Question("Kokonaisarvosana kurssin järjestämisestä (1-5).", quiz1));
 			Question question7 = Qrepository.save(new Question("Vapaa kommentti kurssista.", quiz1));
 
+			// CREATE NEW SESSION
+			Session sesh = srepo.save(new Session(quiz1));
+			
 			// SAVE ANSWERS
-			arepo.save(new Answer(question1, "Saavutin tavoitteet tietysti erinomaisesti"));
-			arepo.save(new Answer(question1, "En onnistunut :("));
-			arepo.save(new Answer(question2, "Kurssin työmäärä vastasu noppien määrää oikein mukavasti"));
-			arepo.save(new Answer(question2, "noppien määrää oikein mukavasti"));
+			arepo.save(new Answer(question1, "Saavutin tavoitteet tietysti erinomaisesti", sesh));
+			arepo.save(new Answer(question1, "En onnistunut :(", sesh));
+			arepo.save(new Answer(question2, "Kurssin työmäärä vastasu noppien määrää oikein mukavasti", sesh));
+			arepo.save(new Answer(question2, "noppien määrää oikein mukavasti", sesh));
 			arepo.save(new Answer(question2, "Kurssin työmäärä vastasi huonosti"));
 			arepo.save(new Answer(question3, "Olisin toivonut ryhmätöitä lisää"));
 			arepo.save(new Answer(question4, "Kurssissa oli hyvää ryhmätyöt"));
 			arepo.save(new Answer(question5, "Kurssia voisi kehittää vastaamalla tähän kyselyyn"));
 			arepo.save(new Answer(question6, "Antaisin arvosanaksi vaikka 2"));
 			arepo.save(new Answer(question7, "Tämä on vapaan kommentin paikanpitäjä"));
+			
+			
+			
 			
 			
 			// CONSOLE INFORMATION

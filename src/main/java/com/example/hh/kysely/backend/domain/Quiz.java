@@ -34,6 +34,10 @@ public class Quiz {
 	@JsonIgnoreProperties("quizzes")
 	public User owner;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
+	@JsonIgnoreProperties("quizzes")
+	public List<Session> sessions;
+
 	public Quiz() {
 	}
 
@@ -96,6 +100,14 @@ public class Quiz {
 
 	public void setOwner(User owner) {
 		this.owner = owner;
+	}
+
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
 	}
 
 	

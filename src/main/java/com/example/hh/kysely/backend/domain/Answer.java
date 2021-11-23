@@ -24,12 +24,24 @@ public class Answer {
 	@JsonIgnoreProperties("answers")
 	private Question question;
 	private String content;
+	
+	@ManyToOne
+	@JoinColumn(name = "session")
+	@JsonIgnoreProperties("answers")
+	private Session session;
+	
 
 	public Answer() {}
 	
 	public Answer(Question question, String content) {
 		this.question = question;
 		this.content = content;
+	}
+
+	public Answer(Question question, String content, Session session) {
+		this.question = question;
+		this.content = content;
+		this.session = session;
 	}
 
 	public Long getId() {
@@ -54,6 +66,14 @@ public class Answer {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public Session getSession() {
+		return session;
+	}
+
+	public void setSession(Session session) {
+		this.session = session;
 	}
 	
 	

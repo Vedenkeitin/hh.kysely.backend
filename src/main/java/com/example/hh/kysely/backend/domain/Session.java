@@ -20,14 +20,53 @@ public class Session {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@ManyToOne
-	@JoinColumn(name = "question")
-	@JsonIgnoreProperties("answers")
-	private Question question;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
+	@JsonIgnoreProperties("sessions")
+	private List<Answer> answers;
 
-	private String content;
+
+	@ManyToOne
+	@JoinColumn(name = "quiz")
+	@JsonIgnoreProperties("sessions")
+	private Quiz quiz;
+	
+	
 
 	public Session() {}
 	
+	public Session(Quiz quiz) {
+		this.quiz = quiz;
+	}
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public List<Answer> getAnswers() {
+		return answers;
+	}
+
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
+
+
+	public Quiz getQuiz() {
+		return quiz;
+	}
+
+
+	public void setQuiz(Quiz quiz) {
+		this.quiz = quiz;
+	}
+
+
+
 	
 }
