@@ -1,5 +1,6 @@
 package com.example.hh.kysely.backend.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.example.hh.kysely.backend.domain.Option;
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
 import com.example.hh.kysely.backend.domain.Quiz;
@@ -68,5 +70,14 @@ public class QuestionController {
 	public String deleteQuiz(@PathVariable("id") Long quizId, Model model) {
 	 quizrepo.deleteById(quizId);
 	 return "redirect:../";
+	}
+	
+	// ADD OPTION TO QUESTION
+	@RequestMapping(value = "/question/{id}/addoption")
+	public String addOption(@PathVariable("id") Long questionId, Option option) {
+		Question q = qrepo.findById(questionId).orElse(null);
+		List optionList = new ArrayList<>(q.getOptions());
+		optionList.add(option);
+		return "ok";
 	}
 }

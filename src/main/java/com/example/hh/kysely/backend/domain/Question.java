@@ -3,6 +3,7 @@ package com.example.hh.kysely.backend.domain;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,6 +22,8 @@ public class Question {
 	private String content;
 	private String answer;
 	private String type;
+	@ElementCollection  
+	private List<String> options;
 
 	@ManyToOne
 	@JoinColumn(name = "question")
@@ -30,6 +33,7 @@ public class Question {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
     @JsonIgnoreProperties({"question"})
     private List<Answer> answers;
+
 	
 	public Question() {
 	}
@@ -38,18 +42,28 @@ public class Question {
 		this.content = content;
 		this.answer = answer;
 	}
-
+	
 	public Question(String content, Quiz quiz) {
 		super();
 		this.content = content;
 		this.quiz = quiz;
 	}
 
+	public Question(String content, Quiz quiz, String type) {
+		super();
+		this.content = content;
+		this.quiz = quiz;
+		this.type = type;
+	}
+	
+	
+
 	public Question(String content, String answer, Quiz quiz) {
 		this.content = content;
 		this.answer = answer;
 		this.quiz = quiz;
 	}
+	
 
 	public String getContent() {
 		return content;
@@ -98,5 +112,15 @@ public class Question {
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
 	}
+
+	public List<String> getOptions() {
+		return options;
+	}
+
+	public void setOptions(List<String> options) {
+		this.options = options;
+	}
+	
+
 
 }

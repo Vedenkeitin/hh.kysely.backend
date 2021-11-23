@@ -89,6 +89,24 @@ public class RestController {
 		return alist;
 	}
 	
-
+	//REST SESSION GET ALL
+	
+	// GET QUIZ ANSWERS
+	// POHJA 
+	/* 
+	@RequestMapping(value="/answers/quiz/{id}/save", method= RequestMethod.POST)
+	public @ResponseBody Answer saveQuizAnswerRest(@RequestBody String data, @PathVariable ("id") Long quizId) {
+		Question q = qrepo.findById(questionId).orElse(null);
+		Session sesh = srepo.save(new Session(quizrepo.findById(quizId).orElse()));
+		for ( q : quesions ) {
+			
+			for( answer : answers ){
+				answer.setQuestion(q, answer.content, sesh);
+			}
+		}
+		return http.Ok!;
+		
+	}
+	*/
 
 }
