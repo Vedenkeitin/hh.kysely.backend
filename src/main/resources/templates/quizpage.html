@@ -13,7 +13,7 @@
 <body>
 <div class="container">
 	<div class="p-2">
-		<h1 class="d-inline">Kysely</h1>
+		<h1 class="d-inline">Add question</h1>
 		
 	</div>
 	
@@ -42,15 +42,29 @@
 	</div>
 	
 
-	<div th:object="${question}">
+	<div th:object="${question}" class="dropdown">
+		<div class="dropdown">
+		  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+		    Select type of question
+		  </button>
+		  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+		    <a class="dropdown-item" href="#Text">Text</a>
+		    <a class="dropdown-item" href="#Radio">Radio button</a>
+		    <a class="dropdown-item" href="#Checkbox">Checkbox</a>
+		  </div>
+		</div>
+		
 		<form th:action="${'/quiz/' + quiz.get().id + '/addquestion'}" action="#" method="post">
+			
 		  	<label for="question">Add question</label>
+		  	
 			<input type="text" id="question" th:field="*{content}" />
 			<div style="clear: both; display: block; height: 15px;"></div>
 		  	
 			<input type="submit" value="Save"></input>
 		</form>
 	</div>
+	
 	
 </div>
 </body>
