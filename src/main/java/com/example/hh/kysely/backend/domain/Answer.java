@@ -27,7 +27,7 @@ public class Answer {
 	
 	@ManyToOne
 	@JoinColumn(name = "session")
-	@JsonIgnoreProperties("answers")
+	@JsonIgnoreProperties({ "quiz", "answers"})
 	private Session session;
 	
 

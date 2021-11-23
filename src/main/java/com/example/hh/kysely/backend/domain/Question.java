@@ -24,7 +24,7 @@ public class Question {
 
 	@ManyToOne
 	@JoinColumn(name = "question")
-	@JsonIgnoreProperties("questions")
+	@JsonIgnoreProperties({"questions", "sessions"})
 	private Quiz quiz;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")

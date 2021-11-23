@@ -35,7 +35,7 @@ public class Quiz {
 	public User owner;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
-	@JsonIgnoreProperties("quizzes")
+	@JsonIgnoreProperties({ "quiz", "answers" })
 	public List<Session> sessions;
 
 	public Quiz() {

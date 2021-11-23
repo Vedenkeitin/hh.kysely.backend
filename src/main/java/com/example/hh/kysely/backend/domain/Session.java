@@ -21,13 +21,13 @@ public class Session {
 	private Long id;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "session")
-	@JsonIgnoreProperties("sessions")
+	@JsonIgnoreProperties({ "sessions" , "questions"})
 	private List<Answer> answers;
 
 
 	@ManyToOne
 	@JoinColumn(name = "quiz")
-	@JsonIgnoreProperties("sessions")
+	@JsonIgnoreProperties({ "sessions" , "questions"})
 	private Quiz quiz;
 	
 	
