@@ -23,9 +23,17 @@
 		<div>
 			<ol class="list-group">
 				<li class="list-group-item" th:each="q : ${quiz.get().questions}">
+				
+			
 				<p><b  th:text=${q.content}></b> </p>
-				<p><input type="text"/></p>
-				<p><input type="submit" value="Tallenna"></input></p>
+				<!-- q.type määrittää näkyykö vaihtoehtojen lisäys -->
+					<div th:object="${option}" th:if="${q.type == 'type1' || q.type == 'checkbox'}">
+						<form th:action="${'/question/' + q.id + '/addoption'}" action='#' method="post">
+							<input type="text" th:field='*{content}' />
+							<input type="submit" value="Lisää vaihtoehto" />
+						</form>
+					</div>
+				
 				<button class="btn btn-primary" type="button" data-toggle="collapse" th:data-target="'#collapseAnswer' + ${q.id}" aria-expanded="false" th:aria-controls="'collapseAnswer' + ${q.id}">
 					Näytä vastaukset
 				</button>

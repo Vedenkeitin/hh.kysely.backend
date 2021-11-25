@@ -3,6 +3,8 @@ package com.example.hh.kysely.backend.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +49,7 @@ public class QuestionController {
 	public String quizPage(@PathVariable("id") Long quizId, Model model) {
 		model.addAttribute("quiz", quizrepo.findById(quizId));
 		model.addAttribute("question", new Question());
+		model.addAttribute("option", new Option());
 		return "quizpage";
 	}
 
@@ -74,10 +77,11 @@ public class QuestionController {
 	
 	// ADD OPTION TO QUESTION
 	@RequestMapping(value = "/question/{id}/addoption")
-	public String addOption(@PathVariable("id") Long questionId, Option option) {
+	public String addOption(@PathVariable("id") Long questionId, Option option, HttpServletRequest request) {
 		Question q = qrepo.findById(questionId).orElse(null);
-		List optionList = new ArrayList<>(q.getOptions());
-		optionList.add(option);
-		return "ok";
+		q.getOptions().add(option.getContent()); // Ihmeellistä, että toimii
+		qrepo.save(q);
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
 	}
 }
