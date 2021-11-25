@@ -5,23 +5,24 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <head>
-<title>Quizzes</title>
+<title>Kyselyt</title>
 </head>
 <body>
 	
 	<div class="container">
-		<h1 th:text="'Quizzes'">Hello</h1>
+		<h1 th:text="'Kyselyt'">Hello</h1>
 		<div >
 			<table class="table">
 				<tbody>
 					<tr>
-						<th scope="col">Name</th>
+						<th scope="col">Kyselyn nimi</th>
+						<th scope="col">Kysymysten määrä</th>
 						
 					</tr>
 					<tr th:each="quiz : ${quizzes}">
 						<td> <a th:href="${'/quiz/' + quiz.id}" th:text="${quiz.name}"></a></td>
 						<td th:text=${#lists.size(quiz.questions)}></td>				
-						<td><a th:href="@{/delete/{id}(id=${quiz.id})}" class="btn btn-danger">Delete</a></td>
+						<td><a th:href="@{/delete/{id}(id=${quiz.id})}" class="btn btn-danger">Poista</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -30,14 +31,15 @@
 			<form action="/quiz/save" th:object="${quiz}">
 				
 				<div class="form-group">
-					<label>Quiz name</label>
+					<h3>Luo uusi kysely</h3>
+					<label>Kyselyn nimi</label>
 					<input class="form-control" type="text" th:field="*{name}" required />
 				</div>
 				<div class="form-group">
-					<label>description</label>
+					<label>Kuvaus</label>
 					<textarea class="form-control" type="text" th:field=*{description} />
 				<div  class="form-group">
-					<input type="submit"  class="btn btn-sm btn-primary" value="add quiz" ></input>
+					<input type="submit"  class="btn btn-sm btn-primary" value="Luo kysely" ></input>
 				</div>
 				</div>
 			</form>
