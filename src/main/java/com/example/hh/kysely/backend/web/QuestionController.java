@@ -63,7 +63,7 @@ public class QuestionController {
 	// ADD QUESTION TO QUIZ
 	@RequestMapping(value = "/quiz/{id}/addquestion")
 	public String saveQuestionToQuiz(@PathVariable("id") Long quizId, Question question) {
-		qrepo.save(new Question(question.getContent(), quizrepo.findById(quizId).orElse(null)));
+		qrepo.save(new Question(question.getContent(), quizrepo.findById(quizId).orElse(null), question.getType()));
 		String returnUrl = "redirect:/quiz/" + quizId;
 		return returnUrl;
 	}

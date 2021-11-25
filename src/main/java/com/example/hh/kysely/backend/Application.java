@@ -41,12 +41,12 @@ public class Application {
 			quizrepo.save(quiz1);
 
 			// SAVE QUESTIONS TO QUIZ
-			Question question1 = Qrepository.save(new Question("Kuinka hyvin saavutit kurssin oppimistavoitteet?", quiz1, "type1"));
+			Question question1 = Qrepository.save(new Question("Kuinka hyvin saavutit kurssin oppimistavoitteet?", quiz1));
 			Question question2 = Qrepository.save(new Question("Kuinka hyvin kurssin työmäärä vastasi opintopisteiden määrää?", quiz1));
-			Question question3 = Qrepository.save(new Question("Mitä olisit toivonut lisää?", quiz1, "checkbox"));
+			Question question3 = Qrepository.save(new Question("Mitä olisit toivonut lisää?", quiz1));
 			Question question4 = Qrepository.save(new Question("Mikä kurssissa oli hyvää?", quiz1));
 			Question question5 = Qrepository.save(new Question("Miten kurssia voisi kehittää?", quiz1));
-			Question question6 = Qrepository.save(new Question("Kokonaisarvosana kurssin järjestämisestä (1-5).", quiz1));
+			Question question6 = Qrepository.save(new Question("Kokonaisarvosana kurssin järjestämisestä (1-5).", quiz1, "radiobutton"));
 			Question question7 = Qrepository.save(new Question("Vapaa kommentti kurssista.", quiz1));
 
 			// CREATE NEW SESSION
