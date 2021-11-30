@@ -56,11 +56,11 @@
 						<!-- Listaa lisatyt vastausvaihtoehdot -->
 						<div th:id="'optionsList' + ${q.id}"
 							th:if="${q.type == 'radiobutton' || q.type == 'checkbox'}">
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item" th:each="option : ${q.options}"
+							<div class="list-group list-group-flush">
+								<p class="list-group-item" th:each="option : ${q.options}"
 									th:text="${option}">
-								<li />
-							</ul>
+								<p />
+							</div>
 						</div>
 						
 						<!-- Vastausten nayttaminen nappulaa painamalla -->
@@ -69,7 +69,13 @@
 							th:data-target="'#collapseAnswer' + ${q.id}"
 							aria-expanded="false"
 							th:aria-controls="'collapseAnswer' + ${q.id}">Näytä
-							vastaukset</button>
+							vastaukset
+						</button>
+						
+						<!-- Kysyksen poistaminen kyselysta -->
+						<form th:action="@{/question/delete/{id}(id=${question.id})}">
+							<button class="btn btn-danger">Poista</button>
+						</form>
 							
 						<div class="collapse" th:id="'collapseAnswer' + ${q.id}">
 							<!-- https://getbootstrap.com/docs/4.0/components/collapse/ -->
@@ -86,26 +92,30 @@
 		</div>
 
 		<!-- Kysymyksen lisays -->
-		<div th:object="${question}">
-			<form th:action="${'/quiz/' + quiz.get().id + '/addquestion'}"
-				action="#" method="post">
-				<div class="row">
-					<div class="column">
-						<input type="text" id="question" th:field="*{content}" />
-					</div>
-					<div class="column">
-						<label for="type">Valitse kysymystyyppi:</label> <select id="type"
-							name="type" th:field="*{type}">
-							<option value="text" th:field="*{type}">Teksti</option>
-							<option value="radiobutton" th:field="*{type}">Monivalinta</option>
-							<option value="checkbox">Valintaruudut</option>
+		<div th:object="${question}" style="margin-top:25px; ">
+			<form th:action="${'/quiz/' + quiz.get().id + '/addquestion'}" action="#" method="post">
+		  				<input type="text" id="question" th:field="*{content}" placeholder="Lisää kysymys" style="width:60%"/>
+		  				<label for="type">Valitse kysymystyyppi:</label>
+						<select id="type" name="type" th:field="*{type}">
+						  <option value="text" th:field="*{type}">Teksti</option>
+						  <option value="radiobutton" th:field="*{type}">Monivalinta</option>
+						  <option value="checkbox">Valintaruudut</option>
 						</select>
-					</div>
+		  			
+				
+				<div class="row">
+  					<div class="col-md-6">
+  						<input type="submit" value="Tallenna" class="btn btn-primary" style="margin-top:5px"/>
+  					</div>
+  					<div class="col-md-6">
+  						
+  					</div>
 				</div>
-				<input type="submit" value="Tallenna"></input>
-
 			</form>
-		</div>
+			<form th:action="${'/'}" action="#" method="post">
+				<button class="btn btn-secondary" style="margin-top:5px">Peruuta</button>
+			</form>
+	</div>
 
 
 	</div>
