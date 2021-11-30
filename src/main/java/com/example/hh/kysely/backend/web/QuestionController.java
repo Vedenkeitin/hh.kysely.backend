@@ -88,6 +88,6 @@ public class QuestionController {
 	@RequestMapping(value = "/question/delete/{id}", method = RequestMethod.GET)
 	public String deleteQuestion(@PathVariable("id") Long questionId, Model model) {
 		qrepo.deleteById(questionId);
-		return "redirect:../quizpage";
+		return "redirect:../";
 	}
 }
