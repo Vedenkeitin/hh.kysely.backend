@@ -14,10 +14,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.example.hh.kysely.backend.domain.Answer;
 import com.example.hh.kysely.backend.domain.AnswerRepository;
+import com.example.hh.kysely.backend.domain.AnswerWrapper;
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
 import com.example.hh.kysely.backend.domain.Quiz;
 import com.example.hh.kysely.backend.domain.QuizRepository;
+import com.example.hh.kysely.backend.domain.Session;
+import com.example.hh.kysely.backend.domain.SessionRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+
 
 @CrossOrigin
 @Controller
@@ -32,6 +42,9 @@ public class RestController {
 	
 	@Autowired
 	private AnswerRepository arepo;
+	
+	@Autowired
+	private SessionRepository srepo;
 
 	// REST, FIND QUESTIONS
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
@@ -89,24 +102,18 @@ public class RestController {
 		return alist;
 	}
 	
-	//REST SESSION GET ALL
-	
-	// GET QUIZ ANSWERS
-	// POHJA 
-	/* 
-	@RequestMapping(value="/answers/quiz/{id}/save", method= RequestMethod.POST)
-	public @ResponseBody Answer saveQuizAnswerRest(@RequestBody String data, @PathVariable ("id") Long quizId) {
-		Question q = qrepo.findById(questionId).orElse(null);
-		Session sesh = srepo.save(new Session(quizrepo.findById(quizId).orElse()));
-		for ( q : quesions ) {
-			
-			for( answer : answers ){
-				answer.setQuestion(q, answer.content, sesh);
-			}
+	// TALLENNA KYSELYN VASTAUKSET 
+	@RequestMapping(value="/quizzes/{id}/save", method= RequestMethod.POST)
+	public @ResponseBody String saveQuizAnswerRest(@RequestBody String data, @PathVariable ("id") Long quizId) throws JsonMappingException, JsonProcessingException {
+		Session sesh = srepo.save(new Session(quizrepo.findById(quizId).orElse(null)));
+		ObjectMapper mapper = new ObjectMapper();
+		List<AnswerWrapper> answerJsonList = mapper.readValue(data, new TypeReference<List<AnswerWrapper>>(){} );
+		for (AnswerWrapper a : answerJsonList) {
+			Long quid = Long.parseLong(a.getQid());
+			arepo.save(new Answer(qrepo.findById(quid).orElse(null), a.getContent(), sesh));
 		}
-		return http.Ok!;
-		
+		System.out.println("Answers saved");
+		return "ok";
 	}
-	*/
-
+	
 }
