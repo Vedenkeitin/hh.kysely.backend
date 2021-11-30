@@ -22,9 +22,15 @@ public class Question {
 	private String content;
 	private String answer;
 	private String type;
-	@ElementCollection  
+	@ElementCollection
 	private List<String> options;
-
+	
+	/*
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnoreProperties({"question"})
+	private List<Option> options;
+	*/
+	
 	@ManyToOne
 	@JoinColumn(name = "question")
 	@JsonIgnoreProperties({"questions", "sessions"})
