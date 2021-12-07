@@ -64,9 +64,21 @@ public class Application {
 			arepo.save(new Answer(question6, "Antaisin arvosanaksi vaikka 2"));
 			arepo.save(new Answer(question7, "Tämä on vapaan kommentin paikanpitäjä"));
 			
-			
-			
-			
+			arepo.save(new Answer(question6, "2"));
+			arepo.save(new Answer(question6, "2"));
+			arepo.save(new Answer(question6, "3"));
+			arepo.save(new Answer(question6, "3"));
+			arepo.save(new Answer(question6, "4"));
+			arepo.save(new Answer(question6, "4"));
+			arepo.save(new Answer(question6, "4"));
+			arepo.save(new Answer(question6, "5"));
+
+			/*
+			 * SELECT COUNT(CONTENT)
+			 * FROM ANSWER
+			 * WHERE QUESTION = 7
+			 * GROUP BY CONTENT
+			 */
 			
 			// CONSOLE INFORMATION
 			log.info("Fetching demo questions...");
