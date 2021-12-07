@@ -85,9 +85,11 @@ public class QuestionController {
 		return "redirect:"+ referer;
 	}
 	//DELETE QUESTION FROM QUIZ
-	@RequestMapping(value = "/question/delete/{id}", method = RequestMethod.GET)
-	public String deleteQuestion(@PathVariable("id") Long questionId, Model model) {
+	@RequestMapping(value = "/deleteq/{id}", method = RequestMethod.POST)
+	public String deleteQuestion(@PathVariable("id") Long questionId, Model model, HttpServletRequest request) {
 		qrepo.deleteById(questionId);
-		return "redirect:../";
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
+		
 	}
 }
