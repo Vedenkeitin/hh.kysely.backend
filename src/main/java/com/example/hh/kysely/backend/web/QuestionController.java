@@ -34,7 +34,6 @@ public class QuestionController {
 	@Autowired
 	private QuizRepository quizrepo;
 
-	
 
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")
@@ -85,11 +84,21 @@ public class QuestionController {
 		return "redirect:"+ referer;
 	}
 	//DELETE QUESTION FROM QUIZ
-	@RequestMapping(value = "/deleteq/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/deletequestion/{id}", method = RequestMethod.POST)
 	public String deleteQuestion(@PathVariable("id") Long questionId, Model model, HttpServletRequest request) {
 		qrepo.deleteById(questionId);
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
 		
 	}
+	
+	//DELETE OPTION FROM QUESTION
+	@RequestMapping(value = "/deleteoption/{id}")
+	public String deleteOption(@PathVariable("id") Long questionId, HttpServletRequest request, Option option) {
+		Question q = qrepo.findById(questionId).orElse(null);
+		q.getOptions().remove(option.getContent());
+		String referer = request.getHeader("Referer");
+		return "redirect:"+ referer;
+	}
+	
 }
