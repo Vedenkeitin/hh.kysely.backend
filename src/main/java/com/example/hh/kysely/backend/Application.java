@@ -61,20 +61,20 @@ public class Application {
 			arepo.save(new Answer(question3, "Olisin toivonut ryhmätöitä lisää"));
 			arepo.save(new Answer(question4, "Kurssissa oli hyvää ryhmätyöt"));
 			arepo.save(new Answer(question5, "Kurssia voisi kehittää vastaamalla tähän kyselyyn"));
-			arepo.save(new Answer(question6, "Antaisin arvosanaksi vaikka 2"));
+			arepo.save(new Answer(question6, "Turku"));
 			arepo.save(new Answer(question7, "Tämä on vapaan kommentin paikanpitäjä"));
 			
-			arepo.save(new Answer(question6, "2"));
-			arepo.save(new Answer(question6, "2"));
-			arepo.save(new Answer(question6, "3"));
-			arepo.save(new Answer(question6, "3"));
-			arepo.save(new Answer(question6, "4"));
-			arepo.save(new Answer(question6, "4"));
-			arepo.save(new Answer(question6, "4"));
-			arepo.save(new Answer(question6, "5"));
+			arepo.save(new Answer(question6, "Turku"));
+			arepo.save(new Answer(question6, "Turku"));
+			arepo.save(new Answer(question6, "Tampere"));
+			arepo.save(new Answer(question6, "Tampere"));
+			arepo.save(new Answer(question6, "Helsinki"));
+			arepo.save(new Answer(question6, "Helsinki"));
+			arepo.save(new Answer(question6, "Helsinki"));
+			arepo.save(new Answer(question6, "Lahti"));
 
 			/*
-			 * SELECT COUNT(CONTENT)
+			 * SELECT CONTENT, COUNT(CONTENT)
 			 * FROM ANSWER
 			 * WHERE QUESTION = 7
 			 * GROUP BY CONTENT
