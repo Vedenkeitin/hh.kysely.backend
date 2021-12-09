@@ -73,12 +73,7 @@ public class Application {
 			arepo.save(new Answer(question6, "Helsinki"));
 			arepo.save(new Answer(question6, "Lahti"));
 
-			/*
-			 * SELECT CONTENT, COUNT(CONTENT)
-			 * FROM ANSWER
-			 * WHERE QUESTION = 7
-			 * GROUP BY CONTENT
-			 */
+			
 			
 			// CONSOLE INFORMATION
 			log.info("Fetching demo questions...");

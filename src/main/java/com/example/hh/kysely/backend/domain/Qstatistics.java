@@ -3,35 +3,35 @@ package com.example.hh.kysely.backend.domain;
 public class Qstatistics {
 	// not entity class
 	
-		private String model;
-		private long count;
+		private String content; // vastausvaihtoehdon teksti
+		private long count; // vastattujen vaihtoehtojen lkm
 		
 		public Qstatistics() {
 			super();
-			this.model = null;
+			this.content = null;
 			this.count = 0;
 		}
 		
 		
 		public Qstatistics(String model, long count) {
 			super();
-			this.model = model;
+			this.content = content;
 			this.count = count;
 		}
-		public void setModel(String model) {
-			this.model = model;
+		public void setModel(String content) {
+			this.content = content;
 		}
 		public void setCount(long count) {
 			this.count = count;
 		}
-		public String getModel() {
-			return model;
+		public String getContent() {
+			return content;
 		}
 		public long getCount() {
 			return count;
 		}
 		@Override
 		public String toString() {
-			return "QuestionModelCount [model=" + model + ", count=" + count + "]";
+			return "QuestionModelCount [content=" + content + ", count=" + count + "]";
 		}
 }

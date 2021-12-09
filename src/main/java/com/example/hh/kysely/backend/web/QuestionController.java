@@ -92,4 +92,10 @@ public class QuestionController {
 		return "redirect:"+ referer;
 		
 	}
+	
+	// Car Statistics
+    @RequestMapping(value="/answerstatistics", method = RequestMethod.GET)
+    public String getStatistics() {
+    	return "statistics"; // statistics.html
+    }
 }

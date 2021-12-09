@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.example.hh.kysely.backend.domain.Answer;
 import com.example.hh.kysely.backend.domain.AnswerRepository;
 import com.example.hh.kysely.backend.domain.AnswerWrapper;
+import com.example.hh.kysely.backend.domain.Qstatistics;
 import com.example.hh.kysely.backend.domain.Question;
 import com.example.hh.kysely.backend.domain.QuestionRepository;
 import com.example.hh.kysely.backend.domain.Quiz;
@@ -116,4 +117,11 @@ public class RestController {
 		return "ok";
 	}
 	
+	// RESTful service to get Qstatistics
+	@RequestMapping(value="/statistics/{id}", method = RequestMethod.GET)
+    public @ResponseBody List<Qstatistics> getQStatisticsRest(@PathVariable ("id") Long questionid) {
+        return arepo.findByQuestionNamedParams(questionid);
+		//return arepo.findByQstatistics(questionid);
+    }
+    
 }
