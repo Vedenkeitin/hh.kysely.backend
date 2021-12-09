@@ -92,13 +92,13 @@ public class QuestionController {
 		
 	}
 	
-<<<<<<< HEAD
+
 	// Car Statistics
     @RequestMapping(value="/answerstatistics", method = RequestMethod.GET)
     public String getStatistics() {
     	return "statistics"; // statistics.html
     }
-=======
+
 	//DELETE OPTION FROM QUESTION
 	@RequestMapping(value = "/deleteoption/{id}")
 	public String deleteOption(@PathVariable("id") Long questionId, HttpServletRequest request, Option option) {
@@ -108,5 +108,5 @@ public class QuestionController {
 		return "redirect:"+ referer;
 	}
 	
->>>>>>> dceb16b094b78781af08c6b1fd623d2ca7a43db1
+
 }
