@@ -6,14 +6,17 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
+import com.example.hh.kysely.backend.domain.Question;
+import com.example.hh.kysely.backend.domain.QuestionRepository;
+
 public interface AnswerRepository extends CrudRepository<Answer, Long> {
 	List<Answer> findByContent(String content);
 	
 	
-	@Query("SELECT " + " new com.example.hh.kysely.backend.domain.Qstatistics(a.content, COUNT(a)) "
+	@Query("SELECT " + " new com.example.hh.kysely.backend.domain.Qstatistics(a.content, COUNT(a.content)) "
 			+ " FROM Answer a " + " WHERE a.question = :question " + " GROUP BY a.content")
 	public List<Qstatistics> findByQuestionNamedParams(//findByQstatistics(
-			@Param("question") Long question);
+			@Param("question") Question question);
 	//findByQuestionNamedParams();
 	
 

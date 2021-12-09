@@ -13,7 +13,7 @@ public class Qstatistics {
 		}
 		
 		
-		public Qstatistics(String model, long count) {
+		public Qstatistics(String content, long count) {
 			super();
 			this.content = content;
 			this.count = count;

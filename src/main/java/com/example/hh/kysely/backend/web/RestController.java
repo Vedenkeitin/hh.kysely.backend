@@ -120,7 +120,8 @@ public class RestController {
 	// RESTful service to get Qstatistics
 	@RequestMapping(value="/statistics/{id}", method = RequestMethod.GET)
     public @ResponseBody List<Qstatistics> getQStatisticsRest(@PathVariable ("id") Long questionid) {
-        return arepo.findByQuestionNamedParams(questionid);
+		Question q = qrepo.findById(questionid).orElse(null);
+        return arepo.findByQuestionNamedParams(q);
 		//return arepo.findByQstatistics(questionid);
     }
     
