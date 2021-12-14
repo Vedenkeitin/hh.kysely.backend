@@ -110,8 +110,10 @@ public class RestController {
 		ObjectMapper mapper = new ObjectMapper();
 		List<AnswerWrapper> answerJsonList = mapper.readValue(data, new TypeReference<List<AnswerWrapper>>(){} );
 		for (AnswerWrapper a : answerJsonList) {
+			if ( a != null ) {
 			Long quid = Long.parseLong(a.getQid());
 			arepo.save(new Answer(qrepo.findById(quid).orElse(null), a.getContent(), sesh));
+			}
 		}
 		System.out.println("Answers saved");
 		return "ok";
