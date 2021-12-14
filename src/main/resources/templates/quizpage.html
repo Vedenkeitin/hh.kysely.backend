@@ -11,7 +11,8 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
 	integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
 	crossorigin="anonymous"></script>
@@ -26,8 +27,19 @@
 </head>
 <body>
 	<div class="container">
-		<div class="p-2">
+
+		<div>
 			<h1 class="d-inline">Kysely</h1>
+
+			<div class="d-inline p-2" th:if="${quiz.get().visibility == false}">
+				<a th:href="${'/quiz/' + quiz.get().id + '/hidequiz'}"
+					th:text="Julkaise" class="btn btn-success btn-md"></a>
+			</div>
+
+			<div class="d-inline p-2" th:if="${quiz.get().visibility == true}">
+				<a th:href="${'/quiz/' + quiz.get().id + '/hidequiz'}"
+					th:text="Piilota" class="btn btn-danger btn-md"></a>
+			</div>
 
 		</div>
 
@@ -40,72 +52,70 @@
 					<li class="list-group-item" th:each="q : ${quiz.get().questions}">
 
 						<p>
-							<div class="container">
-							
-							  <div class="row">
-							  	<div class="col-8">
+						<div class="container">
+
+							<div class="row">
+								<div class="col-8">
 									<b th:text=${q.content}></b>
 								</div>
 								<!-- Vastausten nayttaminen nappulaa painamalla -->
-							    <div class="col-2">
-							    <button class="btn btn-primary btn-sm">
-								<i class="bi bi-card-list"
-									data-toggle="collapse"
-									th:data-target="'#collapseAnswer' + ${q.id}"
-									aria-expanded="false"
-									th:aria-controls="'collapseAnswer' + ${q.id}"
-									style="color:white; font-size:15px"
-								> Vastaukset</i>
-								</button>
+								<div class="col-2">
+									<button class="btn btn-primary btn-sm">
+										<i class="bi bi-card-list" data-toggle="collapse"
+											th:data-target="'#collapseAnswer' + ${q.id}"
+											aria-expanded="false"
+											th:aria-controls="'collapseAnswer' + ${q.id}"
+											style="color: white; font-size: 15px"> Vastaukset</i>
+									</button>
 								</div>
-							    <div class="col-2">
-							    	<!-- Kysyksen poistaminen kyselysta -->
-							    	<div th:object="${question}">
-									<form th:action="${'/deletequestion/' + q.id}" action="#" method="post">
-										<button type="submit" class="btn btn-danger btn-sm">
-											<i class="bi bi-trash-fill" style="color:white; font-size:15px"> Poista</i>
-										</button>
-									</form>
+								<div class="col-2">
+									<!-- Kysyksen poistaminen kyselysta -->
+									<div th:object="${question}">
+										<form th:action="${'/deletequestion/' + q.id}" action="#"
+											method="post">
+											<button type="submit" class="btn btn-danger btn-sm">
+												<i class="bi bi-trash-fill"
+													style="color: white; font-size: 15px"> Poista</i>
+											</button>
+										</form>
 									</div>
-							    </div>
-							  </div>
-							  <div class="collapse" th:id="'collapseAnswer' + ${q.id}">
+								</div>
+							</div>
+							<div class="collapse" th:id="'collapseAnswer' + ${q.id}">
 								<!-- https://getbootstrap.com/docs/4.0/components/collapse/ -->
 								<ul class="list-group list-group-flush"
 									th:each="a : ${q.answers}">
 									<li class="list-group-item" th:text="${a.content}"></li>
 								</ul>
 							</div>
-						</div>
-						
-						<!-- Vaihtoehdon lisays kentta -->
-						<!-- q.type määrittää näkyykö vaihtoehtojen lisäys -->
+						</div> <!-- Vaihtoehdon lisays kentta --> <!-- q.type määrittää näkyykö vaihtoehtojen lisäys -->
 						<div th:object="${option}"
-							th:if="${q.type == 'radiobutton' || q.type == 'checkbox'}" class="col">
+							th:if="${q.type == 'radiobutton' || q.type == 'checkbox'}"
+							class="col">
 							<form th:action="${'/question/' + q.id + '/addoption'}"
 								action='#' method="post" style="margin-top: 10px">
-								<input type="text" th:field='*{content}' style="width:90%" placeholder="Lisää vastausvaihtoehto"/>
+								<input type="text" th:field='*{content}' style="width: 90%"
+									placeholder="Lisää vastausvaihtoehto" />
 								<button type="submit" class="btn btn-primary btn-sm">
-									<i class="bi bi-plus-circle" style="color:white"></i>
+									<i class="bi bi-plus-circle" style="color: white"></i>
 								</button>
 							</form>
-						</div>
-						
-						<!-- Listaa lisatyt vastausvaihtoehdot -->
+						</div> <!-- Listaa lisatyt vastausvaihtoehdot -->
 
 						<div th:id="'optionsList' + ${q.id}" th:object="${option}"
 							th:if="${q.type == 'radiobutton' || q.type == 'checkbox'}">
-							<form th:action="${'/deleteoption/' + q.id}" action="#" method="post">
-							<input type="hidden" th:field='*{content}' th:value="${option}"/>
-								
+							<form th:action="${'/deleteoption/' + q.id}" action="#"
+								method="post">
+								<input type="hidden" th:field='*{content}' th:value="${option}" />
+
 								<div class="list-group list-group-flush">
-									<div class="list-group-item" th:each="option : ${q.options}" style="width:100%">
+									<div class="list-group-item" th:each="option : ${q.options}"
+										style="width: 100%">
 										<div th:text="${option}" style=""></div>
-										<span style="float: right; position: relative; top: 0px" >
+										<span style="float: right; position: relative; top: 0px">
 											<button type="submit" class="btn btn-danger btn-sm">
-												<i class="bi bi-trash-fill" style="color:white"></i>
-											</button>
-											<input type="hidden" />
+												<i class="bi bi-trash-fill" style="color: white"></i>
+											</button> <input type="hidden" />
 										</span>
 									</div>
 								</div>
@@ -117,25 +127,28 @@
 		</div>
 
 		<!-- Kysymyksen lisays -->
-		<div th:object="${question}" style="margin-top:25px; ">
-			<form th:action="${'/quiz/' + quiz.get().id + '/addquestion'}" action="#" method="post">
-		  		<input type="text" id="question" th:field="*{content}" placeholder="Lisää kysymys" style="width:60%"/>
-		  		<label for="type">Valitse kysymystyyppi:</label>
-				<select id="type" name="type" th:field="*{type}">
+		<div th:object="${question}" style="margin-top: 25px;">
+			<form th:action="${'/quiz/' + quiz.get().id + '/addquestion'}"
+				action="#" method="post">
+				<input type="text" id="question" th:field="*{content}"
+					placeholder="Lisää kysymys" style="width: 60%" /> <label
+					for="type">Valitse kysymystyyppi:</label> <select id="type"
+					name="type" th:field="*{type}">
 					<option value="text" th:field="*{type}">Teksti</option>
 					<option value="radiobutton" th:field="*{type}">Monivalinta</option>
 					<option value="checkbox">Valintaruudut</option>
 				</select>
-		  			
-				
+
+
 				<div class="row">
-  					<div class="col-md-6">
-  						<input type="submit" value="Tallenna" class="btn btn-primary" style="margin-top:5px"/>
-  					</div>
+					<div class="col-md-6">
+						<input type="submit" value="Tallenna" class="btn btn-primary"
+							style="margin-top: 5px" />
+					</div>
 				</div>
 			</form>
 			<form th:action="${'/'}" action="#" method="post">
-				<button class="btn btn-secondary" style="margin-top:5px">Peruuta</button>
+				<button class="btn btn-secondary" style="margin-top: 5px">Peruuta</button>
 			</form>
 		</div>
 	</div>

@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -35,11 +36,10 @@ public class QuestionController {
 	@Autowired
 	private QuizRepository quizrepo;
 
-
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")
-	public String index(Model model) {
-		model.addAttribute("quizzes", quizrepo.findAll());
+	public String index(Model model, Quiz quiz) {
+		model.addAttribute("quizzes", quizrepo.findByVisibility(true));
 		model.addAttribute("quiz", new Quiz());
 		return "index";
 	}
@@ -111,7 +111,7 @@ public class QuestionController {
 	
 	// HIDE QUIZ
 	@RequestMapping(value = "/quiz/{id}/hidequiz")
-	public String hideQuiz(@PathVariable("id") Long quizId, Model model, Quiz quiz) {
+	public String hideQuiz(@PathVariable("id") Long quizId, Model model, Quiz quiz, HttpServletRequest request) {
 		Quiz qstat = quizrepo.findById(quizId).orElse(null);
 		if (qstat.getVisibility() == false) {
 			qstat.setVisibility(true);
@@ -123,6 +123,8 @@ public class QuestionController {
 			System.out.println("publish/hide failed");
 		}
 		
-		return "redirect:../";
+		String referer = request.getHeader("Referer");
+		
+		return "redirect:" + referer;
 	}
 }
