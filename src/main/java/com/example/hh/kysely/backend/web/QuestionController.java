@@ -44,7 +44,7 @@ public class QuestionController {
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")
 	public String index(Model model, Quiz quiz) {
-		model.addAttribute("quizzes", quizrepo.findByVisibility(true));
+		model.addAttribute("quizzes", quizrepo.findAll());
 		model.addAttribute("quiz", new Quiz());
 		return "index";
 	}

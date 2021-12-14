@@ -56,7 +56,7 @@ public class RestController {
 	// REST, FIND QUIZZES
 	@RequestMapping(value = "/quizzes", method = RequestMethod.GET)
 	public @ResponseBody List<Quiz> quizListRest() {
-		return (List<Quiz>) quizrepo.findAll();
+		return (List<Quiz>) quizrepo.findByVisibility(true);
 	}
 
 	
