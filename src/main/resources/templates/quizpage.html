@@ -29,18 +29,18 @@
 	<div class="container">
 
 		<div class="p-2">
-			<form th:action="${'/'}" action="#" method="post">
-				<button class="btn btn-success" style="margin-bottom:20px"><i class="bi bi-house-door"></i></button>
+			<form th:action="${'/'}" action="#" method="post" class="d-inline">
+				<button class="btn btn-primary" style="margin-bottom:20px"><i class="bi bi-house-door"></i></button>
 
-			<h1 class="d-inline">Kysely</h1>
+			<h1 class="d-inline p-2">Kysely</h1>
 			</form>
 
-			<div class="d-inline p-2" th:if="${quiz.get().visibility == false}">
+			<div class="d-inline" th:if="${quiz.get().visibility == false}">
 				<a th:href="${'/quiz/' + quiz.get().id + '/hidequiz'}"
 					th:text="Julkaise" class="btn btn-success btn-md"></a>
 			</div>
 
-			<div class="d-inline p-2" th:if="${quiz.get().visibility == true}">
+			<div class="d-inline" th:if="${quiz.get().visibility == true}">
 				<a th:href="${'/quiz/' + quiz.get().id + '/hidequiz'}"
 					th:text="Piilota" class="btn btn-danger btn-md"></a>
 			</div>
