@@ -98,21 +98,19 @@
 
 						<div th:id="'optionsList' + ${q.id}" th:object="${option}"
 							th:if="${q.type == 'radiobutton' || q.type == 'checkbox'}">
-							<form th:action="${'/deleteoption/' + q.id}" action="#" method="post">
-							<input type="hidden" th:field='*{content}' th:value="${option}"/>
-								
 								<div class="list-group list-group-flush">
 									<div class="list-group-item" th:each="option : ${q.options}" style="width:100%">
-										<div th:text="${option}" style=""></div>
+									<form th:action="${'/deleteoption/' + q.id}" action="#" method="post" th:object="${option}">
+										<p th:text="${option}" />
+										<input type="hidden" th:field='*{content}' th:value="${option}" name="content"/>
 										<span style="float: right; position: relative; top: 0px" >
 											<button type="submit" class="btn btn-danger btn-sm">
 												<i class="bi bi-trash-fill" style="color:white"></i>
 											</button>
-											<input type="hidden" />
 										</span>
+									</form>
 									</div>
 								</div>
-							</form>
 						</div>
 					</li>
 				</ol>

@@ -35,12 +35,16 @@ public class User {
 	@JsonIgnoreProperties({"owner"})
 	private List<Quiz> quizzes;
 	
-	public User() {}
+	@Column(name = "role", nullable = false)
+	private String role;
 	
-	public User(String username, String passwordHash) {
+	public User() {}
+
+	public User(String username, String passwordHash, String role) {
 		super();
 		this.username = username;
 		this.passwordHash = passwordHash;
+		this.role = role;
 	}
 
 	public Long getId() {
@@ -76,5 +80,11 @@ public class User {
 		this.quizzes = quizzes;
 	}
 	
-	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }

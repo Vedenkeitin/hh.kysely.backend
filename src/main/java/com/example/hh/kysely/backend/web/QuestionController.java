@@ -34,7 +34,12 @@ public class QuestionController {
 
 	@Autowired
 	private QuizRepository quizrepo;
-
+	
+	
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
 
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")
