@@ -23,7 +23,7 @@ public class Quiz {
 	@Column(nullable = false)
 	private String name;
 	private String Description;
-
+	private Boolean visibility = false;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "quiz")
 	@JsonIgnoreProperties("quiz") //  ({ "quiz", "answers" }) vastaukset saa poistettua kyselyn vastauksista 
@@ -40,7 +40,7 @@ public class Quiz {
 
 	public Quiz() {
 	}
-
+	
 	public Quiz(String name) {
 		super();
 		this.name = name;
@@ -108,6 +108,14 @@ public class Quiz {
 
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
+	}
+
+	public Boolean getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(Boolean visibility) {
+		this.visibility = visibility;
 	}
 
 	

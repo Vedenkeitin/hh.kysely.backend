@@ -2,6 +2,7 @@ package com.example.hh.kysely.backend.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -108,5 +109,20 @@ public class QuestionController {
 		return "redirect:"+ referer;
 	}
 	
-
+	// HIDE QUIZ
+	@RequestMapping(value = "/quiz/{id}/hidequiz")
+	public String hideQuiz(@PathVariable("id") Long quizId, Model model, Quiz quiz) {
+		Quiz qstat = quizrepo.findById(quizId).orElse(null);
+		if (qstat.getVisibility() == false) {
+			qstat.setVisibility(true);
+			quizrepo.save(qstat);
+		} else if (qstat.getVisibility() == true) {
+			qstat.setVisibility(false);
+			quizrepo.save(qstat);
+		} else {
+			System.out.println("publish/hide failed");
+		}
+		
+		return "redirect:../";
+	}
 }
