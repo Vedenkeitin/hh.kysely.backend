@@ -12,6 +12,11 @@
 	<div class="container">
 		<h1 th:text="'Kyselyt'">Hello</h1>
 		<div >
+			<div class="col-md-4" style="padding:20px 0">
+				<form th:action="@{/logout}" method="post">
+					<input type="submit" id="Sign Out" value="Kirjaudu ulos" class="btn btn-sm btn-danger"/>
+				</form>
+			</div>
 			<table class="table">
 				<tbody>
 					<tr>

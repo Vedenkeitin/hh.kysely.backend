@@ -34,7 +34,7 @@ public class Application {
 			// COMMAND LINE RUNNER FOR CREATING TEST QUESTIONS, ANSWERS AND QUIZ
 
 			// CREATE USERS  - urepo.save RETURNS User object it created
-			User cliuser = urepo.save(new User("moi", "moi"));
+			User cliuser = urepo.save(new User("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "admin"));
 			
 			// CREATE NEW QUIZ
 			Quiz quiz1 = new Quiz("Esimerkkikysely: Kurssipalaute", cliuser, "Kysely on tarkoitettu opiskelijoille, jolla on voi vastata opettajan luomaan kyselyyn. Kyselyyn voi vastata vain opiskelijat, jotka ovat osallistuneet kurssiin. ");

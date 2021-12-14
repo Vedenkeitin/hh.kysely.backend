@@ -36,6 +36,11 @@ public class QuestionController {
 	@Autowired
 	private QuizRepository quizrepo;
 
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
+
 	// QUIZ PAGE, LANDING PAGE, SHOWS ALL QUIZZES
 	@RequestMapping(value = "/")
 	public String index(Model model, Quiz quiz) {
@@ -90,7 +95,6 @@ public class QuestionController {
 		qrepo.deleteById(questionId);
 		String referer = request.getHeader("Referer");
 		return "redirect:"+ referer;
-		
 	}
 	
 
@@ -109,7 +113,7 @@ public class QuestionController {
 		return "redirect:"+ referer;
 	}
 	
-	// HIDE QUIZ
+	// HIDE AND PUBLISH QUIZ
 	@RequestMapping(value = "/quiz/{id}/hidequiz")
 	public String hideQuiz(@PathVariable("id") Long quizId, Model model, Quiz quiz, HttpServletRequest request) {
 		Quiz qstat = quizrepo.findById(quizId).orElse(null);
