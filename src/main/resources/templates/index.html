@@ -26,7 +26,9 @@
 					</tr>
 					<tr th:each="quiz : ${quizzes}">
 						<td> <a th:href="${'/quiz/' + quiz.id}" th:text="${quiz.name}"></a></td>
-						<td th:text=${#lists.size(quiz.questions)}></td>				
+						<td th:text=${#lists.size(quiz.questions)}></td>
+						<!-- https://hhkysely-frontend.herokuapp.com/?qid={id}(id=${quiz.id}) -->
+						<td><a th:href="@{http://localhost:3000/?qid={id}(id=${quiz.id})}" class="btn">Linkki kyselyyn</a></td>				
 						<td><a th:href="@{/delete/{id}(id=${quiz.id})}" class="btn btn-danger">Poista</a></td>
 					</tr>
 				</tbody>

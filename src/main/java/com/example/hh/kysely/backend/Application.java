@@ -47,7 +47,8 @@ public class Application {
 			Question question4 = Qrepository.save(new Question("Mikä kurssissa oli hyvää?", quiz1));
 			Question question5 = Qrepository.save(new Question("Miten kurssia voisi kehittää?", quiz1));
 			Question question6 = Qrepository.save(new Question("Kokonaisarvosana kurssin järjestämisestä (1-5).", quiz1, "radiobutton"));
-			Question question7 = Qrepository.save(new Question("Vapaa kommentti kurssista.", quiz1));
+			Question question7 = Qrepository.save(new Question("Mitkä näistä olivat erityisen mukavia kurssissa?", quiz1, "checkbox"));
+			Question question8 = Qrepository.save(new Question("Vapaa kommentti kurssista.", quiz1));
 
 			// CREATE NEW SESSION
 			Session sesh = srepo.save(new Session(quiz1));
@@ -57,12 +58,12 @@ public class Application {
 			arepo.save(new Answer(question1, "En onnistunut :(", sesh));
 			arepo.save(new Answer(question2, "Kurssin työmäärä vastasu noppien määrää oikein mukavasti", sesh));
 			arepo.save(new Answer(question2, "noppien määrää oikein mukavasti", sesh));
-			arepo.save(new Answer(question2, "Kurssin työmäärä vastasi huonosti"));
-			arepo.save(new Answer(question3, "Olisin toivonut ryhmätöitä lisää"));
-			arepo.save(new Answer(question4, "Kurssissa oli hyvää ryhmätyöt"));
-			arepo.save(new Answer(question5, "Kurssia voisi kehittää vastaamalla tähän kyselyyn"));
-			arepo.save(new Answer(question6, "Turku"));
-			arepo.save(new Answer(question7, "Tämä on vapaan kommentin paikanpitäjä"));
+			arepo.save(new Answer(question2, "Kurssin työmäärä vastasi huonosti", sesh));
+			arepo.save(new Answer(question3, "Olisin toivonut ryhmätöitä lisää", sesh));
+			arepo.save(new Answer(question4, "Kurssissa oli hyvää ryhmätyöt", sesh));
+			arepo.save(new Answer(question5, "Kurssia voisi kehittää vastaamalla tähän kyselyyn", sesh));
+			arepo.save(new Answer(question6, "Turku", sesh));
+			arepo.save(new Answer(question7, "Tämä on vapaan kommentin paikanpitäjä", sesh));
 			
 			arepo.save(new Answer(question6, "Turku"));
 			arepo.save(new Answer(question6, "Turku"));
