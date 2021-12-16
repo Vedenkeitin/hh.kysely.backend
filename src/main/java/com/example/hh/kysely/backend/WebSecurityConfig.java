@@ -26,7 +26,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .csrf().disable() // CSRF DISABLE; KORJAA MYÖHEMMIN; POST TOIMII
 		.authorizeRequests().antMatchers("/css/**").permitAll()
 		.and()
-		.authorizeRequests().antMatchers("/**").permitAll()
+		.authorizeRequests().antMatchers("/rest/**").permitAll()
 		.and()
 		.authorizeRequests().anyRequest().authenticated()
 		.and()
